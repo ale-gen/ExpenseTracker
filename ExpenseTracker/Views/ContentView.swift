@@ -17,31 +17,56 @@ struct ContentView: View {
     private var items: FetchedResults<Item>
 
     var body: some View {
-        ZStack {
-            NavigationView {
-                List {
-                    ForEach(items) { item in
-                        NavigationLink {
-                            Text("Item at \(item.timestamp!, formatter: itemFormatter)")
-                        } label: {
-                            Text(item.timestamp!, formatter: itemFormatter)
-                        }
-                    }
-                    .onDelete(perform: deleteItems)
-                }
-                .toolbar {
-                    ToolbarItem(placement: .navigationBarTrailing) {
-                        EditButton()
-                    }
-                    ToolbarItem {
-                        Button(action: addItem) {
-                            Label("Add Item", systemImage: "plus")
-                        }
+        TabView {
+            HomeTabView()
+                .tabItem {
+                    VStack {
+                        Text(K.homeTabName)
+                        Image(systemName: K.homeTabIcon)
                     }
                 }
-                Text("Select an item")
-            }
+            
+            GroupTabView()
+                .tabItem {
+                    VStack {
+                        Text(K.groupTabName)
+                        Image(systemName: K.groupTabIcon)
+                    }
+                }
+            
+            SettingsTabView()
+                .tabItem {
+                    VStack {
+                        Text(K.settingsTabName)
+                        Image(systemName: K.settingsTabIcon)
+                    }
+                }
         }
+//        ZStack {
+//            NavigationView {
+//                List {
+//                    ForEach(items) { item in
+//                        NavigationLink {
+//                            Text("Item at \(item.timestamp!, formatter: itemFormatter)")
+//                        } label: {
+//                            Text(item.timestamp!, formatter: itemFormatter)
+//                        }
+//                    }
+//                    .onDelete(perform: deleteItems)
+//                }
+//                .toolbar {
+//                    ToolbarItem(placement: .navigationBarTrailing) {
+//                        EditButton()
+//                    }
+//                    ToolbarItem {
+//                        Button(action: addItem) {
+//                            Label("Add Item", systemImage: "plus")
+//                        }
+//                    }
+//                }
+//                Text("Select an item")
+//            }
+//        }
 //        TabsView()
     }
 
