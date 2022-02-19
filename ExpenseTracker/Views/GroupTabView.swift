@@ -7,9 +7,24 @@
 
 import SwiftUI
 
+struct ExpenseCategory: Hashable {
+    let name: String
+    let icon: String
+}
+
 struct GroupTabView: View {
+    var categories: [ExpenseCategory] = [ExpenseCategory(name: "Food", icon: "🍏"), ExpenseCategory(name: "Clothes shopping", icon: "🛍")]
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        List {
+            Section(header: Text("My categories")) {
+                ForEach(categories, id: \.self) { category in
+                    HStack {
+                        Text(category.icon)
+                        Text(category.name)
+                    }
+                }
+            }
+        }
     }
 }
 
