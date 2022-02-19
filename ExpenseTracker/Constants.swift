@@ -19,7 +19,7 @@ struct K {
     static let settingsTabName = "Settings"
     
     //MARK: - Tab icon
-    static let homeTabIcon = "home.fill"
+    static let homeTabIcon = "house.fill"
     static let groupTabIcon = "list.bullet"
     static let settingsTabIcon = "slider.vertical.3"
     
