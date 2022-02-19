@@ -6,14 +6,13 @@
 //
 
 import SwiftUI
-
-struct ExpenseCategory: Hashable {
-    let name: String
-    let icon: String
-}
+import CoreData
 
 struct GroupTabView: View {
-    var categories: [ExpenseCategory] = [ExpenseCategory(name: "Food", icon: "🍏"), ExpenseCategory(name: "Clothes shopping", icon: "🛍")]
+    //var categories: [ExpenseCategory] = [ExpenseCategory(name: "Food", icon: "🍏"), ExpenseCategory(name: "Clothes shopping", icon: "🛍")]
+    @FetchRequest(entity: ExpenseCategory.entity(), sortDescriptors: [])
+    var categories: FetchedResults<ExpenseCategory>
+    
     var body: some View {
         List {
             Section(header: Text("My categories")) {

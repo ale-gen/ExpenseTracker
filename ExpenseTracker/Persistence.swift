@@ -13,10 +13,14 @@ struct PersistenceController {
     static var preview: PersistenceController = {
         let result = PersistenceController(inMemory: true)
         let viewContext = result.container.viewContext
-        for _ in 0..<10 {
-            let newItem = Item(context: viewContext)
-            newItem.timestamp = Date()
-        }
+//        for _ in 0..<10 {
+//            let newItem = Item(context: viewContext)
+//            newItem.timestamp = Date()
+//        }
+        let category = ExpenseCategory(context: viewContext)
+        category.name = "Food"
+        category.icon = "🍏"
+        
         do {
             try viewContext.save()
         } catch {
@@ -53,4 +57,9 @@ struct PersistenceController {
             }
         })
     }
+    
+    static var testData: [ExpenseCategory]? = {
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "ExpenseCategory")
+        return try? PersistenceController.preview.container.viewContext.fetch(fetchRequest) as? [ExpenseCategory]
+    }()
 }
