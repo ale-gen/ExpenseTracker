@@ -9,16 +9,14 @@ import SwiftUI
 import CoreData
 
 struct CategoriesTabView: View {
-    @Environment(\.managedObjectContext) private var viewContext
-    //var categories: [ExpenseCategory] = [ExpenseCategory(name: "Food", icon: "🍏"), ExpenseCategory(name: "Clothes shopping", icon: "🛍")]
-    @FetchRequest(entity: ExpenseCategory.entity(), sortDescriptors: [])
-    var categories: FetchedResults<ExpenseCategory>
+    
+    @State var categoryViewModel: CategoryViewModel
     
     var body: some View {
         ZStack {
             NavigationView {
                 ZStack {
-                    if (categories.count == 0) {
+                    if (categoryViewModel.categories.count == 0) {
                         VStack {
                             Image("emptyData")
                                 .resizable()
@@ -35,12 +33,10 @@ struct CategoriesTabView: View {
                         
                     } else {
                         List {
-                            Section(header: Text("")) {
-                                ForEach(categories, id: \.self) { category in
-                                    HStack {
-                                        Text(category.icon ?? K.noCategoryIcon)
-                                        Text(category.name)
-                                    }
+                            ForEach(categoryViewModel.categories, id: \.self) { category in
+                                HStack {
+                                    Text(category.icon ?? K.noCategoryIcon)
+                                    Text(category.name)
                                 }
                             }
                         }
@@ -48,9 +44,8 @@ struct CategoriesTabView: View {
                 }
                 .navigationBarTitle(Text("Categories"))
                 .navigationBarItems(trailing:
-                                        
                                         Button {
-                    //action from viewModel
+                    categoryViewModel.addCategory(name: "Clothes shopping", icon: "🛍")
                 } label: {
                     Label("Add Item", systemImage: "plus")
                     
@@ -62,6 +57,6 @@ struct CategoriesTabView: View {
 
 struct GroupTabView_Previews: PreviewProvider {
     static var previews: some View {
-        CategoriesTabView()
+        CategoriesTabView(categoryViewModel: CategoryViewModel())
     }
 }
