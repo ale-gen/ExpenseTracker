@@ -26,11 +26,11 @@ struct ContentView: View {
                     }
                 }
             
-            GroupTabView()
+            CategoriesTabView()
                 .tabItem {
                     VStack {
-                        Text(K.groupTabName)
-                        Image(systemName: K.groupTabIcon)
+                        Text(K.categoriesTabName)
+                        Image(systemName: K.categoriesTabIcon)
                     }
                 }
             
@@ -67,7 +67,6 @@ struct ContentView: View {
 //                Text("Select an item")
 //            }
 //        }
-//        TabsView()
     }
 
 //    private func addItem() {
@@ -101,13 +100,6 @@ struct ContentView: View {
 //        }
 //    }
 }
-
-private let itemFormatter: DateFormatter = {
-    let formatter = DateFormatter()
-    formatter.dateStyle = .short
-    formatter.timeStyle = .medium
-    return formatter
-}()
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {

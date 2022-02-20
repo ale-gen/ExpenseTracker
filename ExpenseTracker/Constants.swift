@@ -9,19 +9,16 @@ import Foundation
 import SwiftUI
 
 struct K {
-    static let tabItemLabels = ["Trips", "Charts", "", "Groups", "Search"]
-    static let tabItemImages = ["case.fill", "chart.bar.xaxis", "plus", "list.bullet", "magnifyingglass"]
-    static let monthsTable = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Nov", "Dec"]
     static let noCategoryIcon = "❓"
     
     //MARK: - Tab names
     static let homeTabName = "Home"
-    static let groupTabName = "Group"
+    static let categoriesTabName = "Categories"
     static let settingsTabName = "Settings"
     
     //MARK: - Tab icon
     static let homeTabIcon = "house.fill"
-    static let groupTabIcon = "list.bullet"
+    static let categoriesTabIcon = "list.bullet"
     static let settingsTabIcon = "slider.vertical.3"
     
     //MARK: - Colors
