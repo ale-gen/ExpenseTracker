@@ -12,6 +12,7 @@ struct K {
     static let tabItemLabels = ["Trips", "Charts", "", "Groups", "Search"]
     static let tabItemImages = ["case.fill", "chart.bar.xaxis", "plus", "list.bullet", "magnifyingglass"]
     static let monthsTable = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Nov", "Dec"]
+    static let noCategoryIcon = "❓"
     
     //MARK: - Tab names
     static let homeTabName = "Home"

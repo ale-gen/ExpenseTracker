@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7A28241327C252D600FAB22A /* CategoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A28241227C252D600FAB22A /* CategoryModel.swift */; };
 		7A65EE2127C011560010E174 /* HomeTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A65EE2027C011560010E174 /* HomeTabView.swift */; };
 		7A65EE2327C015B80010E174 /* SettingsTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A65EE2227C015B80010E174 /* SettingsTabView.swift */; };
 		7A65EE2527C015E00010E174 /* GroupTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A65EE2427C015E00010E174 /* GroupTabView.swift */; };
@@ -42,6 +43,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7A28241227C252D600FAB22A /* CategoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryModel.swift; sourceTree = "<group>"; };
 		7A65EE2027C011560010E174 /* HomeTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabView.swift; sourceTree = "<group>"; };
 		7A65EE2227C015B80010E174 /* SettingsTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTabView.swift; sourceTree = "<group>"; };
 		7A65EE2427C015E00010E174 /* GroupTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupTabView.swift; sourceTree = "<group>"; };
@@ -91,6 +93,7 @@
 			isa = PBXGroup;
 			children = (
 				7ABF6A7B27C17653000B4A3C /* ExpenseCategory.swift */,
+				7A28241227C252D600FAB22A /* CategoryModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -304,6 +307,7 @@
 				7A65EE2327C015B80010E174 /* SettingsTabView.swift in Sources */,
 				7AE18D9927BFBD6D00F120D6 /* TabBarView.swift in Sources */,
 				7A65EE2127C011560010E174 /* HomeTabView.swift in Sources */,
+				7A28241327C252D600FAB22A /* CategoryModel.swift in Sources */,
 				7AE18D7527BFB1EF00F120D6 /* ExpenseTracker.xcdatamodeld in Sources */,
 				7ABF6A7C27C17653000B4A3C /* ExpenseCategory.swift in Sources */,
 				7AE18D9B27BFBDA300F120D6 /* Constants.swift in Sources */,
