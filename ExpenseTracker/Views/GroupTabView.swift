@@ -9,17 +9,34 @@ import SwiftUI
 import CoreData
 
 struct GroupTabView: View {
+    @Environment(\.managedObjectContext) private var viewContext
     //var categories: [ExpenseCategory] = [ExpenseCategory(name: "Food", icon: "🍏"), ExpenseCategory(name: "Clothes shopping", icon: "🛍")]
     @FetchRequest(entity: ExpenseCategory.entity(), sortDescriptors: [])
     var categories: FetchedResults<ExpenseCategory>
     
     var body: some View {
-        List {
-            Section(header: Text("My categories")) {
-                ForEach(categories, id: \.self) { category in
-                    HStack {
-                        Text(category.icon)
-                        Text(category.name)
+        if (categories.count == 0) {
+            VStack {
+                Image("emptyData")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 150, height: 150)
+                Text("No results")
+                    .font(.title2)
+                    .foregroundColor(K.customNavyColor)
+                    .fontWeight(.bold)
+                Text("Create own category.")
+                    .font(.subheadline)
+                    .foregroundColor(K.customNavyColor)
+            }
+        } else {
+            List {
+                Section(header: Text("My categories")) {
+                    ForEach(categories, id: \.self) { category in
+                        HStack {
+                            Text(category.icon)
+                            Text(category.name)
+                        }
                     }
                 }
             }
