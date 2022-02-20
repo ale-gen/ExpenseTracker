@@ -10,7 +10,7 @@ import CoreData
 
 struct CategoriesTabView: View {
     
-    @State var categoryViewModel: CategoryViewModel
+    @StateObject var categoryViewModel = CategoryViewModel()
     
     var body: some View {
         ZStack {

@@ -9,8 +9,6 @@ import SwiftUI
 import CoreData
 
 struct ContentView: View {
-    
-    let categoryVM = CategoryViewModel()
 
     var body: some View {
         TabView {
@@ -22,7 +20,7 @@ struct ContentView: View {
                     }
                 }
             
-            CategoriesTabView(categoryViewModel: categoryVM)
+            CategoriesTabView()
                 .tabItem {
                     VStack {
                         Text(K.categoriesTabName)
