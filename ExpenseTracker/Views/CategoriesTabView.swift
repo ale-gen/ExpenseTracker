@@ -18,7 +18,7 @@ struct CategoriesTabView: View {
                 ZStack {
                     if (categoryViewModel.categories.count == 0) {
                         VStack {
-                            Image("emptyData")
+                            Image(K.noCategoriesImageName)
                                 .resizable()
                                 .scaledToFit()
                                 .frame(width: 150, height: 150)

@@ -10,6 +10,8 @@ import SwiftUI
 
 struct K {
     static let noCategoryIcon = "❓"
+    static let noCategoriesImageName = "emptyData"
+    static let containerName = "ExpenseTracker"
     
     //MARK: - Tab names
     static let homeTabName = "Home"
