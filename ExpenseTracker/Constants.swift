@@ -27,4 +27,5 @@ struct K {
     static let borderColor = Color(red: 120/255, green: 122/255, blue: 145/255, opacity: 1)
     static let customNavyColor = Color(red: 20/255, green: 39/255, blue: 155/255, opacity: 1)
     static let customOrangeColor = Color(red: 1, green: 130/255, blue: 67/255, opacity: 1)
+    static let noResultsFontColor = "CustomFontColor"
 }

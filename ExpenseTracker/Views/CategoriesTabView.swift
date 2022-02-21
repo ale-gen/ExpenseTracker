@@ -11,6 +11,7 @@ import CoreData
 struct CategoriesTabView: View {
     
     @StateObject var categoryViewModel = CategoryViewModel()
+    @State var searchText: String = ""
     
     var body: some View {
         ZStack {
@@ -24,16 +25,22 @@ struct CategoriesTabView: View {
                                 .frame(width: 150, height: 150)
                             Text("No results")
                                 .font(.title2)
-                                .foregroundColor(K.customNavyColor)
+                                .foregroundColor(Color(K.noResultsFontColor))
                                 .fontWeight(.bold)
                             Text("Create own category.")
                                 .font(.subheadline)
-                                .foregroundColor(K.customNavyColor)
+                                .foregroundColor(Color(K.noResultsFontColor))
                         }
                         
                     } else {
                         List {
-                            ForEach(categoryViewModel.categories, id: \.self) { category in
+                            TextField("Search", text: $searchText)
+                                .padding(7)
+                                .background(Color("ComponentsColor"))
+                                .cornerRadius(10)
+                            
+                            ForEach(categoryViewModel.categories.filter{ searchText.isEmpty || $0.name.contains(searchText)
+                            }, id: \.self) { category in
                                 HStack {
                                     Text(category.icon ?? K.noCategoryIcon)
                                     Text(category.name)
@@ -52,7 +59,6 @@ struct CategoriesTabView: View {
                     categoryViewModel.addCategory(name: "Clothes shopping", icon: "🛍")
                 } label: {
                     Label("Add Item", systemImage: "plus")
-                    
                 })
             }
         }
