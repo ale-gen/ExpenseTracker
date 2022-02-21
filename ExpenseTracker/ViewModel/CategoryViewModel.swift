@@ -26,4 +26,9 @@ class CategoryViewModel: ObservableObject {
         }
         categories = manager.categories
     }
+    
+    func deleteCategory(indexSet: IndexSet) {
+        manager.deleteCategory(for: indexSet)
+        categories = manager.categories
+    }
 }

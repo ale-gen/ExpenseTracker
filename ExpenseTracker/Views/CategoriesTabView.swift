@@ -39,6 +39,7 @@ struct CategoriesTabView: View {
                                     Text(category.name)
                                 }
                             }
+                            .onDelete(perform: categoryViewModel.deleteCategory)
                         }
                     }
                 }

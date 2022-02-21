@@ -18,7 +18,7 @@ protocol CoreDataProtocol {
 protocol CategoryCoreDataProtocol {
     var categories: [ExpenseCategory] { get }
     func addCategory(name: String, icon: String)
-    func deleteCategory(name: String)
+    func deleteCategory(for indexSet: IndexSet)
     func editCategory(name: String)
     func fetchCategories()
 }
@@ -63,9 +63,11 @@ extension CoreDataManager: CategoryCoreDataProtocol {
         save()
     }
     
-    func deleteCategory(name: String) {
-        //MARK: - TODO: DELETE
-        return
+    func deleteCategory(for indexSet: IndexSet) {
+        guard let index = indexSet.first else { return }
+        let deletedCategory = categories[index]
+        context.delete(deletedCategory)
+        save()
     }
     
     func editCategory(name: String) {
