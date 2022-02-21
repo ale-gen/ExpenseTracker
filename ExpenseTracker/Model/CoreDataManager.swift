@@ -19,7 +19,7 @@ protocol CategoryCoreDataProtocol {
     var categories: [ExpenseCategory] { get }
     func addCategory(name: String, icon: String)
     func deleteCategory(for indexSet: IndexSet)
-    func editCategory(name: String)
+    func editCategory(for category: ExpenseCategory, newName: String?, newIcon: String?)
     func fetchCategories()
 }
 
@@ -70,8 +70,17 @@ extension CoreDataManager: CategoryCoreDataProtocol {
         save()
     }
     
-    func editCategory(name: String) {
-        //MARK: - TODO: EDIT
+    func editCategory(for category: ExpenseCategory, newName: String?, newIcon: String?) {
+        let updatedCategory = category
+        if let safeName = newName {
+            updatedCategory.name = safeName
+        }
+        if let safeIcon = newIcon {
+            updatedCategory.icon = safeIcon
+        }
+        category.name = updatedCategory.name
+        category.icon = updatedCategory.icon
+        
         return
     }
     

@@ -38,6 +38,9 @@ struct CategoriesTabView: View {
                                     Text(category.icon ?? K.noCategoryIcon)
                                     Text(category.name)
                                 }
+                                .onTapGesture {
+                                    categoryViewModel.updateCategory(for: category, name: "Food", icon: "🍏")
+                                }
                             }
                             .onDelete(perform: categoryViewModel.deleteCategory)
                         }

@@ -31,4 +31,9 @@ class CategoryViewModel: ObservableObject {
         manager.deleteCategory(for: indexSet)
         categories = manager.categories
     }
+    
+    func updateCategory(for category: ExpenseCategory, name: String?, icon: String?) {
+        manager.editCategory(for: category, newName: name, newIcon: icon)
+        categories = manager.categories
+    }
 }
