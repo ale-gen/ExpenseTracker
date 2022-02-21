@@ -9,11 +9,20 @@ import SwiftUI
 
 struct NewCategoryView: View {
     
-//    let categoryViewModel: CategoryViewModel
     @StateObject var categoryViewModel = CategoryViewModel(fetcher: EmojiFetcher())
+    @State var selectedCategory: String = ""
     
     var body: some View {
         VStack {
+            Form {
+                Picker("Icon category", selection: $selectedCategory) {
+                    ForEach(K.iconCategories, id: \.self) { iconCategory in
+                        Text(iconCategory)
+                        .navigationTitle("Icon categories")
+                    }
+                }
+            }
+            
             Button {
                 categoryViewModel.getAllEmojis()
             } label: {
@@ -34,6 +43,7 @@ struct NewCategoryView: View {
                 }
             }
         }
+        .navigationBarTitle("New category")
     }
 }
 
