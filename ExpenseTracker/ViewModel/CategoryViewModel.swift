@@ -8,14 +8,19 @@
 import Foundation
 import CoreData
 
+@MainActor
 class CategoryViewModel: ObservableObject {
     
     let manager = CoreDataManager.instance
+    private var emojiFetcher: EmojiFetcher
+    private var task: Task<(), Never>?
     
     @Published var categories: [ExpenseCategory] = []
+    @Published var emojis: [Emoji] = []
     
-    init() {
+    init(fetcher: EmojiFetcher) {
         categories = manager.categories
+        emojiFetcher = fetcher
     }
     
     func addCategory(name: String, icon: String?) {
@@ -35,5 +40,15 @@ class CategoryViewModel: ObservableObject {
     func updateCategory(for category: ExpenseCategory, name: String?, icon: String?) {
         manager.editCategory(for: category, newName: name, newIcon: icon)
         categories = manager.categories
+    }
+    
+    func getAllEmojis() {
+        task = Task {
+            do {
+                emojis = try await emojiFetcher.getAll()
+            } catch let error {
+                print("Error during emoji fetching: \(error.localizedDescription)")
+            }
+        }
     }
 }

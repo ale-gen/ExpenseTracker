@@ -53,6 +53,7 @@ class CoreDataManager: CoreDataProtocol {
     }
 }
 
+//MARK: - Category management
 extension CoreDataManager: CategoryCoreDataProtocol {
     
     func addCategory(name: String, icon: String = K.noCategoryIcon) {

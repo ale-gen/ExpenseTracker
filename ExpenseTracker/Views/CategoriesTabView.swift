@@ -10,7 +10,7 @@ import CoreData
 
 struct CategoriesTabView: View {
     
-    @StateObject var categoryViewModel = CategoryViewModel()
+    @StateObject var categoryViewModel = CategoryViewModel(fetcher: EmojiFetcher())
     @State var searchText: String = ""
     
     var body: some View {
@@ -49,7 +49,7 @@ struct CategoriesTabView: View {
                                     categoryViewModel.updateCategory(for: category, name: "Food", icon: "🍏")
                                 }
                             }
-                            .onDelete(perform: categoryViewModel.deleteCategory)
+//                            .onDelete(perform: categoryViewModel.deleteCategory)
                         }
                     }
                 }
@@ -58,7 +58,11 @@ struct CategoriesTabView: View {
                                         Button {
                     categoryViewModel.addCategory(name: "Clothes shopping", icon: "🛍")
                 } label: {
-                    Label("Add Item", systemImage: "plus")
+                    NavigationLink {
+                        NewCategoryView(categoryViewModel: categoryViewModel)
+                    } label: {
+                        Label("Add Item", systemImage: "plus")
+                    }
                 })
             }
         }
@@ -67,6 +71,6 @@ struct CategoriesTabView: View {
 
 struct GroupTabView_Previews: PreviewProvider {
     static var previews: some View {
-        CategoriesTabView(categoryViewModel: CategoryViewModel())
+        CategoriesTabView(categoryViewModel: CategoryViewModel(fetcher: EmojiFetcher()))
     }
 }
