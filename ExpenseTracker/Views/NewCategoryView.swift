@@ -11,6 +11,7 @@ struct NewCategoryView: View {
     
     @StateObject var categoryViewModel = CategoryViewModel(fetcher: EmojiFetcher())
     @State var selectedCategory: String = ""
+    @State var selectedIcon: String = ""
     
     var body: some View {
         VStack {
@@ -21,28 +22,11 @@ struct NewCategoryView: View {
                         .navigationTitle("Icon categories")
                     }
                 }
+                VStack(alignment: .leading) {
+                    Text("Pick icon")
+                    EmojiCollection(emojis: categoryViewModel.emojis)
+                }
             }
-            
-            Button {
-                categoryViewModel.getAllEmojis()
-            } label: {
-                Text("Load emoji")
-            }
-            EmojiCollection(emojis: categoryViewModel.emojis)
-//            List {
-//                ForEach(categoryViewModel.emojis, id: \.self) {
-//                    emoji in
-//                    EmojiCell(emoji: emoji)
-//                    HStack {
-//                        Text(emoji.name)
-//                        if let emoji = emoji.unicode.first {
-//                            Text(EmojiFormatter.convertEmoji(for: emoji))
-//                        } else {
-//                            Text(emoji.unicode.first ?? "")
-//                        }
-//                    }
-//                }
-//            }
         }
         .navigationBarTitle("New category")
     }

@@ -10,19 +10,17 @@ import SwiftUI
 struct EmojiCollection: View {
     let emojis: [Emoji]
     
-    let layout = [
-        GridItem(.adaptive(minimum: 70))
-    ]
+    let layout: [GridItem] = Array(repeating: .init(.fixed(40)), count: 3)
     
     var body: some View {
         ScrollView(.horizontal) {
-            LazyHGrid(rows: layout, spacing: 10) {
-                ForEach(emojis, id: \.self) { emoji in
-                    EmojiCell(emoji: emoji)
-                }
+            LazyHGrid(rows: layout, alignment: .top, spacing: 10) {
+                    ForEach(emojis, id: \.self) { emoji in
+                        EmojiCell(emoji: emoji)
+                    }
             }
         }
-        .padding(.leading, 20)
+        .frame(maxHeight: 150)
     }
 }
 

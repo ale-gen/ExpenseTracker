@@ -49,22 +49,20 @@ struct CategoriesTabView: View {
                                     categoryViewModel.updateCategory(for: category, name: "Food", icon: "🍏")
                                 }
                             }
-//                            .onDelete(perform: categoryViewModel.deleteCategory)
+                            //                            .onDelete(perform: categoryViewModel.deleteCategory)
                         }
                     }
                 }
                 .navigationBarTitle(Text("Categories"))
                 .navigationBarItems(trailing:
-                                        Button {
-                    categoryViewModel.addCategory(name: "Clothes shopping", icon: "🛍")
+                                        NavigationLink {
+                    NewCategoryView(categoryViewModel: categoryViewModel)
                 } label: {
-                    NavigationLink {
-                        NewCategoryView(categoryViewModel: categoryViewModel)
-                    } label: {
-                        Label("Add Item", systemImage: "plus")
-                    }
-                })
-            }
+                    Label("Add Item", systemImage: "plus")
+                }
+                                        .simultaneousGesture(TapGesture().onEnded({ _ in
+                    categoryViewModel.getAllEmojis()
+                }))            )}
         }
     }
 }
