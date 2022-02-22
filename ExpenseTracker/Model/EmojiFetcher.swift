@@ -27,13 +27,13 @@ class EmojiFetcher: EmojiFetcherProtocol {
     }
     
     func getAll() async throws -> [Emoji] {
-//        guard let url = URL(string: baseUrlString) else { throw FetcherError.invalidURL }
-        guard let url = URL(string: "https://emojihub.herokuapp.com/api/random") else { throw FetcherError.invalidURL }
+        guard let url = URL(string: baseUrlString) else { throw FetcherError.invalidURL }
+//        guard let url = URL(string: "https://emojihub.herokuapp.com/api/random") else { throw FetcherError.invalidURL }
         let request = createRequest(url: url, method: "GET")
         let (data, _) = try await session.data(for: request)
-        guard let emoji = try? JSONDecoder().decode(Emoji.self, from: data) else { throw FetcherError.invalidData }
         print("GET ALL: \(data)")
-        return [emoji]
+        guard let emojis = try? JSONDecoder().decode([Emoji].self, from: data) else { throw FetcherError.invalidData }
+        return emojis
     }
     
     func getByCategory(for categoryName: String) async throws {

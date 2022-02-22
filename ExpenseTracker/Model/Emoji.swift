@@ -7,10 +7,6 @@
 
 import Foundation
 
-struct EmojiList: Codable {
-    let emojis: [Emoji]
-}
-
 struct Emoji: Codable, Hashable {
     let name: String
     let unicode: [String]
