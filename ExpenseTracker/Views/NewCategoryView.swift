@@ -28,20 +28,21 @@ struct NewCategoryView: View {
             } label: {
                 Text("Load emoji")
             }
-            
-            List {
-                ForEach(categoryViewModel.emojis, id: \.self) {
-                    emoji in
-                    HStack {
-                        Text(emoji.name)
-                        if let emoji = emoji.unicode.first {
-                            Text(EmojiFormatter.convertEmoji(for: emoji))
-                        } else {
-                            Text(emoji.unicode.first ?? "")
-                        }
-                    }
-                }
-            }
+            EmojiCollection(emojis: categoryViewModel.emojis)
+//            List {
+//                ForEach(categoryViewModel.emojis, id: \.self) {
+//                    emoji in
+//                    EmojiCell(emoji: emoji)
+//                    HStack {
+//                        Text(emoji.name)
+//                        if let emoji = emoji.unicode.first {
+//                            Text(EmojiFormatter.convertEmoji(for: emoji))
+//                        } else {
+//                            Text(emoji.unicode.first ?? "")
+//                        }
+//                    }
+//                }
+//            }
         }
         .navigationBarTitle("New category")
     }

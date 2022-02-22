@@ -25,6 +25,10 @@ struct K {
     static let categoriesTabIcon = "list.bullet"
     static let settingsTabIcon = "slider.vertical.3"
     
+    //MARK: - Collection Cell features
+    static let columnsNumber = 6
+    static let rowsNumber = 4
+    
     //MARK: - Colors
     static let borderColor = Color(red: 120/255, green: 122/255, blue: 145/255, opacity: 1)
     static let customNavyColor = Color(red: 20/255, green: 39/255, blue: 155/255, opacity: 1)
