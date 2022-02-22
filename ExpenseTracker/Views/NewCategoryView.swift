@@ -11,7 +11,8 @@ struct NewCategoryView: View {
     
     @StateObject var categoryViewModel = CategoryViewModel(fetcher: EmojiFetcher())
     @State var selectedCategory: String = ""
-    @State var selectedIcon: String = ""
+    @State var isEmojiPicked: Bool = false
+    @State var emojiPicked: Emoji? = nil
     
     var body: some View {
         VStack {
@@ -22,9 +23,27 @@ struct NewCategoryView: View {
                         .navigationTitle("Icon categories")
                     }
                 }
-                VStack(alignment: .leading) {
-                    Text("Pick icon")
-                    EmojiCollection(emojis: categoryViewModel.emojis)
+                if !isEmojiPicked {
+                    VStack(alignment: .leading) {
+                        Text("Pick icon")
+                            .padding(.top, 10)
+                        EmojiCollection(emojis: categoryViewModel.emojis, emojiPicked: $emojiPicked, isEmojiPicked: $isEmojiPicked)
+                    }
+                } else {
+                    Button {
+                        withAnimation {
+                            isEmojiPicked.toggle()
+                        }
+                    } label: {
+                        HStack {
+                            Text("Expense category icon")
+                                .foregroundColor(.primary)
+                            Spacer()
+                            if let safeEmoji = emojiPicked {
+                                EmojiCell(emoji: safeEmoji, isEmojiPicked: $isEmojiPicked, emojiPicked: $emojiPicked)
+                            }
+                        }
+                    }
                 }
             }
         }
