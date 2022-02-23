@@ -10,6 +10,7 @@ import SwiftUI
 struct NewCategoryView: View {
     
     @StateObject var categoryViewModel = CategoryViewModel(fetcher: EmojiFetcher())
+    @State var categoryName: String = ""
     @State var selectedCategory: String = ""
     @State var isEmojiPicked: Bool = false
     @State var emojiPicked: Emoji? = nil
@@ -17,6 +18,9 @@ struct NewCategoryView: View {
     var body: some View {
         VStack {
             Form {
+                TextField("Expense category name", text: $categoryName) {
+
+                }
                 Picker("Icon category", selection: $selectedCategory) {
                     ForEach(K.iconCategories, id: \.self) { iconCategory in
                         Text(iconCategory)
@@ -45,7 +49,20 @@ struct NewCategoryView: View {
                         }
                     }
                 }
+                
             }
+            Button {
+                
+            } label: {
+                Text("Add")
+                    .foregroundColor(Color.white)
+                    .frame(height: 55)
+                    .frame(maxWidth: .infinity)
+                    .background(K.customNavyColor)
+                    .cornerRadius(10)
+                    .padding(10)
+            }
+            .buttonStyle(PlainButtonStyle())
         }
         .navigationBarTitle("New category")
     }
