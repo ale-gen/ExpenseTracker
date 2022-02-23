@@ -10,6 +10,7 @@ import SwiftUI
 
 struct K {
     static let noCategoryIcon = "❓"
+    static let noCategoryIconUnicode = "U+2753"
     static let noCategoriesImageName = "emptyData"
     static let containerName = "ExpenseTracker"
     

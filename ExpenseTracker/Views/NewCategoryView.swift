@@ -52,7 +52,10 @@ struct NewCategoryView: View {
                 
             }
             Button {
-                
+                if !categoryName.isEmpty {
+                    let emojiUnicode = EmojiFormatter.convertEmoji(for: emojiPicked?.unicode.first ?? K.noCategoryIconUnicode)
+                    categoryViewModel.addCategory(name: categoryName, icon: emojiUnicode)
+                }
             } label: {
                 Text("Add")
                     .foregroundColor(Color.white)
@@ -62,6 +65,7 @@ struct NewCategoryView: View {
                     .cornerRadius(10)
                     .padding(10)
             }
+            .disabled(categoryName.isEmpty)
             .buttonStyle(PlainButtonStyle())
         }
         .navigationBarTitle("New category")
