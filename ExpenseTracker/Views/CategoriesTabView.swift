@@ -39,7 +39,7 @@ struct CategoriesTabView: View {
                                 .background(Color("ComponentsColor"))
                                 .cornerRadius(10)
                             
-                            ForEach(categoryViewModel.categories.filter{ searchText.isEmpty || $0.name.contains(searchText)
+                            ForEach(categoryViewModel.categories.filter{ searchText.isEmpty || $0.name.lowercased().contains(searchText.lowercased())
                             }, id: \.self) { category in
                                 HStack {
                                     Text(category.icon ?? K.noCategoryIcon)
