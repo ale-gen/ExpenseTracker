@@ -8,7 +8,7 @@
 import Foundation
 import CoreData
 
-@MainActor
+//@MainActor
 class CategoryViewModel: ObservableObject {
     
     let manager = CoreDataManager.instance
@@ -42,6 +42,7 @@ class CategoryViewModel: ObservableObject {
         categories = manager.categories
     }
     
+    @MainActor
     func getAllEmojis() {
         task = Task {
             do {
