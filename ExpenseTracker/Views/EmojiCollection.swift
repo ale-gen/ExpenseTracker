@@ -17,7 +17,13 @@ struct EmojiCollection: View {
         ScrollView(.horizontal) {
             LazyHGrid(rows: layout, alignment: .top, spacing: 10) {
                 ForEach(emojis, id: \.self) { emoji in
-                    EmojiCell(emoji: emoji, isEmojiPicked: $isEmojiPicked, emojiPicked: $emojiPicked)
+                    EmojiCell(emoji: emoji)
+                        .onTapGesture {
+                            emojiPicked = emoji
+                            withAnimation {
+                                isEmojiPicked.toggle()
+                            }
+                        }
                 }
             }
         }

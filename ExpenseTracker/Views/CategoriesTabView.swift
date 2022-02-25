@@ -49,7 +49,7 @@ struct CategoriesTabView: View {
                                     categoryViewModel.updateCategory(for: category, name: "Food", icon: "🍏")
                                 }
                             }
-                            //                            .onDelete(perform: categoryViewModel.deleteCategory)
+//                            .onDelete(of: categoryViewModel., perform: categoryViewModel.deleteCategory)
                         }
                     }
                 }

@@ -44,7 +44,7 @@ struct NewCategoryView: View {
                                 .foregroundColor(.primary)
                             Spacer()
                             if let safeEmoji = emojiPicked {
-                                EmojiCell(emoji: safeEmoji, isEmojiPicked: $isEmojiPicked, emojiPicked: $emojiPicked)
+                                EmojiCell(emoji: safeEmoji)
                             }
                         }
                     }
