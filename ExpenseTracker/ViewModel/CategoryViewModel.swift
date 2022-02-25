@@ -8,7 +8,6 @@
 import Foundation
 import CoreData
 
-//@MainActor
 class CategoryViewModel: ObservableObject {
     
     let manager = CoreDataManager.instance
