@@ -6,15 +6,21 @@
 //
 
 import SwiftUI
+import Combine
 
 struct ExpenseFormView: View {
     
-    @ObservedObject var inputExpenseAmount = NumbersOnly()
+    @StateObject var expenseViewModel = ExpenseViewModel()
+    @State var inputExpenseAmount: String = ""
     
     var body: some View {
-        TextField("Enter expense amount...", text: $inputExpenseAmount.value)
+        TextField("Enter expense amount...", text: $inputExpenseAmount)
             .padding()
             .keyboardType(.decimalPad)
+            .onChange(of: inputExpenseAmount) { newValue in
+                expenseViewModel.validAmountInput(for: newValue)
+                inputExpenseAmount = expenseViewModel.inputExpenseAmount
+            }
     }
 }
 

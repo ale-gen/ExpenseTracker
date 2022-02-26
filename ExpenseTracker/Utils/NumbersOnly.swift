@@ -7,14 +7,16 @@
 
 import Foundation
 
-class NumbersOnly: ObservableObject {
-    @Published var value = "" {
-        didSet {
-            let filteredData = value.filter { $0.isNumber }
-            
-            if value != filteredData {
-                value = filteredData
-            }
+struct NumbersOnly {
+    static func filterNumbers(for input: String) -> String {
+        var result: String
+        let filteredData = input.filter { $0.isNumber }
+        
+        if input != filteredData {
+            result = filteredData
+        } else {
+            result = input
         }
+        return result
     }
 }
