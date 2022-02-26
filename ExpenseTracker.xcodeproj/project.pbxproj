@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		7A20743927CA7E3C0078180C /* ExpenseTracker.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7A20743727CA7E3C0078180C /* ExpenseTracker.xcdatamodeld */; };
+		7A20743D27CA93840078180C /* ExpenseFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A20743C27CA93840078180C /* ExpenseFormView.swift */; };
+		7A20743F27CA94DC0078180C /* NumbersOnly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A20743E27CA94DC0078180C /* NumbersOnly.swift */; };
 		7A26469127C3E8DD0059EA2F /* EmojiFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A26469027C3E8DD0059EA2F /* EmojiFetcher.swift */; };
 		7A26469327C3EF150059EA2F /* Emoji.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A26469227C3EF150059EA2F /* Emoji.swift */; };
 		7A26469627C3F8480059EA2F /* EmojiFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A26469527C3F8480059EA2F /* EmojiFormatter.swift */; };
@@ -50,6 +52,8 @@
 
 /* Begin PBXFileReference section */
 		7A20743827CA7E3C0078180C /* ExpenseTracker.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ExpenseTracker.xcdatamodel; sourceTree = "<group>"; };
+		7A20743C27CA93840078180C /* ExpenseFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseFormView.swift; sourceTree = "<group>"; };
+		7A20743E27CA94DC0078180C /* NumbersOnly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumbersOnly.swift; sourceTree = "<group>"; };
 		7A26469027C3E8DD0059EA2F /* EmojiFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiFetcher.swift; sourceTree = "<group>"; };
 		7A26469227C3EF150059EA2F /* Emoji.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Emoji.swift; sourceTree = "<group>"; };
 		7A26469527C3F8480059EA2F /* EmojiFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiFormatter.swift; sourceTree = "<group>"; };
@@ -101,10 +105,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7A20743A27CA93230078180C /* CategoryViews */ = {
+			isa = PBXGroup;
+			children = (
+				7A2CEBA227C54B4D00D30EF9 /* EmojiCollection.swift */,
+				7A2CEBA027C5486300D30EF9 /* EmojiCell.swift */,
+				7A83B91027C3D8F2007A9A54 /* NewCategoryView.swift */,
+				7A65EE2427C015E00010E174 /* CategoriesTabView.swift */,
+			);
+			path = CategoryViews;
+			sourceTree = "<group>";
+		};
+		7A20743B27CA933C0078180C /* ExpenseViews */ = {
+			isa = PBXGroup;
+			children = (
+				7A20743C27CA93840078180C /* ExpenseFormView.swift */,
+			);
+			path = ExpenseViews;
+			sourceTree = "<group>";
+		};
 		7A26469427C3F8330059EA2F /* Utils */ = {
 			isa = PBXGroup;
 			children = (
 				7A26469527C3F8480059EA2F /* EmojiFormatter.swift */,
+				7A20743E27CA94DC0078180C /* NumbersOnly.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -209,13 +233,11 @@
 		7AE18D9727BFBD5200F120D6 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				7A20743B27CA933C0078180C /* ExpenseViews */,
+				7A20743A27CA93230078180C /* CategoryViews */,
 				7AE18D6A27BFB1E100F120D6 /* ContentView.swift */,
 				7A65EE2027C011560010E174 /* HomeTabView.swift */,
 				7A65EE2227C015B80010E174 /* SettingsTabView.swift */,
-				7A65EE2427C015E00010E174 /* CategoriesTabView.swift */,
-				7A83B91027C3D8F2007A9A54 /* NewCategoryView.swift */,
-				7A2CEBA027C5486300D30EF9 /* EmojiCell.swift */,
-				7A2CEBA227C54B4D00D30EF9 /* EmojiCollection.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -351,6 +373,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7A2CEBA327C54B4D00D30EF9 /* EmojiCollection.swift in Sources */,
+				7A20743F27CA94DC0078180C /* NumbersOnly.swift in Sources */,
 				7A65EE2527C015E00010E174 /* CategoriesTabView.swift in Sources */,
 				7AE18D6B27BFB1E100F120D6 /* ContentView.swift in Sources */,
 				7AE18D6927BFB1E100F120D6 /* ExpenseTrackerApp.swift in Sources */,
@@ -363,6 +386,7 @@
 				7AE18D9B27BFBDA300F120D6 /* Constants.swift in Sources */,
 				7A83B91127C3D8F2007A9A54 /* NewCategoryView.swift in Sources */,
 				7A63CB3A27C8DFF700CA39AB /* Expense.swift in Sources */,
+				7A20743D27CA93840078180C /* ExpenseFormView.swift in Sources */,
 				7A26469627C3F8480059EA2F /* EmojiFormatter.swift in Sources */,
 				7A2CEBA127C5486300D30EF9 /* EmojiCell.swift in Sources */,
 				7A26469327C3EF150059EA2F /* Emoji.swift in Sources */,
