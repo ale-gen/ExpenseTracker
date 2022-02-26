@@ -11,4 +11,5 @@ import CoreData
 public class ExpenseCategory: NSManagedObject {
     @NSManaged public var name: String
     @NSManaged public var icon: String?
+    @NSManaged public var expenses: NSSet?
 }

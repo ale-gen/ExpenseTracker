@@ -18,6 +18,13 @@ class CategoryViewModel: ObservableObject {
     @Published var emojis: [Emoji] = []
     
     @Published var isLoading: Bool = false
+    var expensesForCategory: [String: Int] {
+        return categories.reduce([String: Int]()) { (dict, category) -> [String: Int] in
+            var dict = dict
+            dict[category.name] = category.expenses?.count ?? 0
+            return dict
+        }
+    }
     
     init(fetcher: EmojiFetcher) {
         categories = manager.categories

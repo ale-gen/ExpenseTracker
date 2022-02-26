@@ -44,6 +44,14 @@ struct CategoriesTabView: View {
                                 HStack {
                                     Text(category.icon ?? K.noCategoryIcon)
                                     Text(category.name)
+                                    Spacer()
+                                    if let expensesForCategory = category.expenses?.count {
+                                        Text("\(expensesForCategory)")
+                                            .foregroundColor(.gray)
+                                        Image(systemName: "chevron.forward")
+                                            .padding(.trailing, 10)
+                                            .foregroundColor(.gray)
+                                    }
                                 }
                                 .onTapGesture {
                                     categoryViewModel.updateCategory(for: category, name: "Food", icon: "🍏")
@@ -51,6 +59,7 @@ struct CategoriesTabView: View {
                             }
                             .onDelete(perform: categoryViewModel.deleteCategory)
                         }
+                        .menuIndicator(.visible)
                     }
                 }
                 .navigationBarTitle(Text("Categories"))
