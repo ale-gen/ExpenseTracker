@@ -32,6 +32,7 @@ struct NewCategoryView: View {
                         Text("Pick icon")
                             .padding(.top, 10)
                         EmojiCollection(emojis: categoryViewModel.emojis, emojiPicked: $emojiPicked, isEmojiPicked: $isEmojiPicked)
+                            .overlay(loadingView)
                     }
                 } else {
                     Button {
@@ -69,6 +70,18 @@ struct NewCategoryView: View {
             .buttonStyle(PlainButtonStyle())
         }
         .navigationBarTitle("New category")
+    }
+    
+    
+    @ViewBuilder
+    private var loadingView: some View {
+        if (categoryViewModel.isLoading) {
+            ProgressView()
+                .progressViewStyle(CircularProgressViewStyle())
+                .padding(20)
+                .background(.regularMaterial)
+                .mask(RoundedRectangle(cornerRadius: 10))
+        }
     }
 }
 
