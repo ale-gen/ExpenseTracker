@@ -9,7 +9,9 @@ import SwiftUI
 
 struct HomeTabView: View {
     var body: some View {
-        ExpenseFormView()
+        NavigationView {
+            ExpenseFormView()
+        }
     }
 }
 

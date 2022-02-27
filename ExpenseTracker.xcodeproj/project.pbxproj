@@ -21,6 +21,7 @@
 		7A65EE2527C015E00010E174 /* CategoriesTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A65EE2427C015E00010E174 /* CategoriesTabView.swift */; };
 		7A83B91127C3D8F2007A9A54 /* NewCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A83B91027C3D8F2007A9A54 /* NewCategoryView.swift */; };
 		7AB0EA2427CACD5E00EDC5DA /* ExpenseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AB0EA2327CACD5E00EDC5DA /* ExpenseViewModel.swift */; };
+		7AB482A927CBCDEC00003A47 /* ExpenseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AB482A827CBCDEC00003A47 /* ExpenseModel.swift */; };
 		7ABF6A7C27C17653000B4A3C /* ExpenseCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ABF6A7B27C17653000B4A3C /* ExpenseCategory.swift */; };
 		7ADDB21327C2E3D300443E25 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ADDB21227C2E3D300443E25 /* CoreDataManager.swift */; };
 		7ADDB21527C2E54B00443E25 /* CategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ADDB21427C2E54B00443E25 /* CategoryViewModel.swift */; };
@@ -66,6 +67,7 @@
 		7A65EE2427C015E00010E174 /* CategoriesTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesTabView.swift; sourceTree = "<group>"; };
 		7A83B91027C3D8F2007A9A54 /* NewCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCategoryView.swift; sourceTree = "<group>"; };
 		7AB0EA2327CACD5E00EDC5DA /* ExpenseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseViewModel.swift; sourceTree = "<group>"; };
+		7AB482A827CBCDEC00003A47 /* ExpenseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseModel.swift; sourceTree = "<group>"; };
 		7ABF6A7B27C17653000B4A3C /* ExpenseCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseCategory.swift; sourceTree = "<group>"; };
 		7ADDB21227C2E3D300443E25 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		7ADDB21427C2E54B00443E25 /* CategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewModel.swift; sourceTree = "<group>"; };
@@ -146,7 +148,6 @@
 		7A63CB3827C8DF9200CA39AB /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
-				7A20743727CA7E3C0078180C /* ExpenseTracker.xcdatamodeld */,
 				7ADDB21227C2E3D300443E25 /* CoreDataManager.swift */,
 			);
 			path = CoreData;
@@ -160,6 +161,7 @@
 				7ABF6A7B27C17653000B4A3C /* ExpenseCategory.swift */,
 				7A26469227C3EF150059EA2F /* Emoji.swift */,
 				7A63CB3927C8DFF700CA39AB /* Expense.swift */,
+				7AB482A827CBCDEC00003A47 /* ExpenseModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -196,6 +198,7 @@
 		7AE18D6727BFB1E100F120D6 /* ExpenseTracker */ = {
 			isa = PBXGroup;
 			children = (
+				7A20743727CA7E3C0078180C /* ExpenseTracker.xcdatamodeld */,
 				7A26469427C3F8330059EA2F /* Utils */,
 				7ADDB21627C2E55D00443E25 /* ViewModel */,
 				7ABF6A7A27C175CA000B4A3C /* Model */,
@@ -390,6 +393,7 @@
 				7A83B91127C3D8F2007A9A54 /* NewCategoryView.swift in Sources */,
 				7AB0EA2427CACD5E00EDC5DA /* ExpenseViewModel.swift in Sources */,
 				7A63CB3A27C8DFF700CA39AB /* Expense.swift in Sources */,
+				7AB482A927CBCDEC00003A47 /* ExpenseModel.swift in Sources */,
 				7A20743D27CA93840078180C /* ExpenseFormView.swift in Sources */,
 				7A26469627C3F8480059EA2F /* EmojiFormatter.swift in Sources */,
 				7A2CEBA127C5486300D30EF9 /* EmojiCell.swift in Sources */,
@@ -731,7 +735,8 @@
 				7A20743827CA7E3C0078180C /* ExpenseTracker.xcdatamodel */,
 			);
 			currentVersion = 7A20743827CA7E3C0078180C /* ExpenseTracker.xcdatamodel */;
-			path = ExpenseTracker.xcdatamodeld;
+			name = ExpenseTracker.xcdatamodeld;
+			path = Model/CoreData/ExpenseTracker.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
