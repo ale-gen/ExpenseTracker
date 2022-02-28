@@ -14,22 +14,56 @@ struct ExpenseFormView: View {
     @State var expenseName: String = ""
     @State var inputExpenseAmount: String = ""
     @State var selectedCurrency: Int = 0
+    @State var isOptional: Bool = false
+    @State var selectedDate: Date = Date.now
+    @State var isDateChosen: Bool = true
     
     var body: some View {
         Form {
-            TextField("Enter expense name...", text: $expenseName)
-            Picker("", selection: $selectedCurrency) {
-                ForEach(0..<expenseViewModel.currencies.count, id: \.self) {
-                    Text(expenseViewModel.currencies[$0])
+            Section(header: Text("General")) {
+                TextField("Enter expense name...", text: $expenseName)
+            }
+            Section(header: Text("Amount")) {
+                Picker("", selection: $selectedCurrency) {
+                    ForEach(0..<expenseViewModel.currencies.count, id: \.self) {
+                        Text(expenseViewModel.currencies[$0])
+                    }
+                }
+                .pickerStyle(SegmentedPickerStyle())
+                TextField("Enter expense amount...", text: $inputExpenseAmount)
+                    .keyboardType(.decimalPad)
+                    .onChange(of: inputExpenseAmount) { newValue in
+                        expenseViewModel.validAmountInput(for: newValue)
+                        inputExpenseAmount = expenseViewModel.inputExpenseAmount
+                    }
+                
+            }
+            Section(header: Text("Importance")) {
+                Toggle(isOn: $isOptional) {
+                    Text("Optional expense")
                 }
             }
-            .pickerStyle(SegmentedPickerStyle())
-            TextField("Enter expense amount...", text: $inputExpenseAmount)
-                .keyboardType(.decimalPad)
-                .onChange(of: inputExpenseAmount) { newValue in
-                    expenseViewModel.validAmountInput(for: newValue)
-                    inputExpenseAmount = expenseViewModel.inputExpenseAmount
+            Section(header: Text("Date")) {
+                if isDateChosen {
+                    HStack {
+                        Text("Expense date")
+                        Spacer()
+                        Text("\(selectedDate)")
+                    }.onTapGesture {
+                        withAnimation {
+                            isDateChosen.toggle()
+                        }
+                    }
+                } else {
+                    DatePicker("Pick a date", selection: $selectedDate, displayedComponents: .date)
+                    .datePickerStyle(GraphicalDatePickerStyle())
+                    .onChange(of: selectedDate) { newValue in
+                        withAnimation {
+                            isDateChosen.toggle()
+                        }
+                    }
                 }
+            }
         }
         .navigationBarTitle("New expense")
     }
