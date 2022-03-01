@@ -13,6 +13,7 @@ class ExpenseViewModel: ObservableObject {
     
     @Published var inputExpenseAmount: String = ""
     @Published var currencies: [String] = []
+    @Published var stringExpenseDate: String = DateConverter.getCurrentDate()
     
     init(expenseModel: ExpenseModel) {
         self.expenseModel = expenseModel
@@ -25,6 +26,21 @@ class ExpenseViewModel: ObservableObject {
     
     func getCurrencies() {
         currencies = expenseModel.currencies
+    }
+    
+    func updateDate(for date: Date) {
+        let day = DateConverter.getDay(for: date)
+        let monthName = DateConverter.getMonthName(for: date)
+        let expenseYear = DateConverter.getYear(for: date)
+        let currentYear = DateConverter.getYear(for: Date.now)
+        var convertedDate: String
+        
+        if expenseYear != currentYear {
+            convertedDate = "\(day), \(monthName)"
+        } else {
+            convertedDate = "\(day), \(monthName) \(expenseYear)"
+        }
+        stringExpenseDate = convertedDate
     }
     
 }

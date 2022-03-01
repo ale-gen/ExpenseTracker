@@ -48,7 +48,7 @@ struct ExpenseFormView: View {
                     HStack {
                         Text("Expense date")
                         Spacer()
-                        Text("\(selectedDate)")
+                        Text(expenseViewModel.stringExpenseDate)
                     }.onTapGesture {
                         withAnimation {
                             isDateChosen.toggle()
@@ -56,16 +56,24 @@ struct ExpenseFormView: View {
                     }
                 } else {
                     DatePicker("Pick a date", selection: $selectedDate, displayedComponents: .date)
-                    .datePickerStyle(GraphicalDatePickerStyle())
-                    .onChange(of: selectedDate) { newValue in
-                        withAnimation {
-                            isDateChosen.toggle()
+                        .datePickerStyle(GraphicalDatePickerStyle())
+                        .onChange(of: selectedDate) { newValue in
+                            expenseViewModel.updateDate(for: newValue)
+                            withAnimation {
+                                isDateChosen.toggle()
+                            }
                         }
-                    }
                 }
             }
         }
         .navigationBarTitle("New expense")
+        .navigationBarItems(trailing:
+                                Button {
+            
+        } label: {
+            Text("Save")
+        }
+        )
     }
 }
 
