@@ -17,11 +17,19 @@ struct ExpenseFormView: View {
     @State var isOptional: Bool = false
     @State var selectedDate: Date = Date.now
     @State var isDateChosen: Bool = true
+    @State var chosenCategory: String = ""
     
     var body: some View {
         Form {
             Section(header: Text("General")) {
                 TextField("Enter expense name...", text: $expenseName)
+                NavigationLink(destination: CategoryListView(chosenCategory: $chosenCategory)) {
+                    HStack {
+                        Text("Category")
+                        Spacer()
+                        Text(chosenCategory)
+                    }
+                }
             }
             Section(header: Text("Amount")) {
                 Picker("", selection: $selectedCurrency) {
@@ -48,7 +56,7 @@ struct ExpenseFormView: View {
                     HStack {
                         Text("Expense date")
                         Spacer()
-                        Text(expenseViewModel.stringExpenseDate)
+                        Text(expenseViewModel.stringExpenseDate.capitalized)
                     }.onTapGesture {
                         withAnimation {
                             isDateChosen.toggle()
@@ -73,6 +81,7 @@ struct ExpenseFormView: View {
         } label: {
             Text("Save")
         }
+                                .disabled(expenseName.isEmpty || chosenCategory.isEmpty || inputExpenseAmount.isEmpty)
         )
     }
 }

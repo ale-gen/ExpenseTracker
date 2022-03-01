@@ -35,7 +35,7 @@ class ExpenseViewModel: ObservableObject {
         let currentYear = DateConverter.getYear(for: Date.now)
         var convertedDate: String
         
-        if expenseYear != currentYear {
+        if expenseYear == currentYear {
             convertedDate = "\(day), \(monthName)"
         } else {
             convertedDate = "\(day), \(monthName) \(expenseYear)"
