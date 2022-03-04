@@ -13,6 +13,6 @@ public class Expense: NSManagedObject {
     @NSManaged var category: ExpenseCategory
     @NSManaged var amount: Double
     @NSManaged var currency: String
-    @NSManaged var date: Date
+    @NSManaged var expenseDate: Date
     @NSManaged var unnecessary: Bool
 }

@@ -23,6 +23,14 @@ protocol CategoryCoreDataProtocol {
     func fetchCategories()
 }
 
+protocol ExpenseCoreDataProtocol {
+    var expenses: [Expense] { get }
+    func addExpense(name: String, amount: Double, currency: String, unnecessary: Bool, expenseDate: Date)
+    func deleteExpense(for indexSet: IndexSet)
+    func editExpense(for expense: Expense, newName: String?, newAmount: Double?, isUnnecessary: Bool?, newDate: Date?, newCurrency: String?)
+    func fetchExpenses()
+}
+
 class CoreDataManager: CoreDataProtocol {
     
     static let instance = CoreDataManager()
@@ -30,6 +38,7 @@ class CoreDataManager: CoreDataProtocol {
     let context: NSManagedObjectContext
     
     private(set) var categories: [ExpenseCategory] = []
+    private(set) var expenses: [Expense] = []
     
     init() {
         container = NSPersistentContainer(name: K.containerName)
@@ -41,12 +50,14 @@ class CoreDataManager: CoreDataProtocol {
         
         context = container.viewContext
         fetchCategories()
+        fetchExpenses()
     }
     
     func save() {
         do {
             try context.save()
             fetchCategories()
+            fetchExpenses()
         } catch let error {
             print("Error during saving: \(error.localizedDescription)")
         }
@@ -82,7 +93,7 @@ extension CoreDataManager: CategoryCoreDataProtocol {
         category.name = updatedCategory.name
         category.icon = updatedCategory.icon
         
-        return
+        save()
     }
     
     func fetchCategories() {
@@ -95,3 +106,37 @@ extension CoreDataManager: CategoryCoreDataProtocol {
     }
 }
 
+//MARK: - Expense Management
+extension CoreDataManager: ExpenseCoreDataProtocol {
+    func addExpense(name: String, amount: Double, currency: String, unnecessary: Bool, expenseDate: Date) {
+        let newExpense = Expense(context: context)
+        newExpense.name = name
+        newExpense.amount = amount
+        newExpense.currency = currency
+        newExpense.unnecessary = unnecessary
+        newExpense.expenseDate = expenseDate
+        
+        save()
+    }
+    
+    func deleteExpense(for indexSet: IndexSet) {
+        guard let index = indexSet.first else { return }
+        let deletedExpense = expenses[index]
+        context.delete(deletedExpense)
+        save()
+    }
+    
+    func editExpense(for expense: Expense, newName: String?, newAmount: Double?, isUnnecessary: Bool?, newDate: Date?, newCurrency: String?) {
+        //TODO: - Update expense on user interaction
+        return
+    }
+    
+    func fetchExpenses() {
+        let request = NSFetchRequest<Expense>(entityName: "Expense")
+        do {
+            expenses = try context.fetch(request)
+        } catch let error {
+            print("Error during fetching expenses: \(error.localizedDescription)")
+        }
+    }
+}

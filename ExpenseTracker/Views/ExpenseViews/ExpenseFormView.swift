@@ -77,7 +77,7 @@ struct ExpenseFormView: View {
         .navigationBarTitle("New expense")
         .navigationBarItems(trailing:
                                 Button {
-            
+            expenseViewModel.addExpense()
         } label: {
             Text("Save")
         }

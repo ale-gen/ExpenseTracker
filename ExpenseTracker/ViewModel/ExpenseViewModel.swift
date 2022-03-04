@@ -10,14 +10,23 @@ import Foundation
 class ExpenseViewModel: ObservableObject {
     
     private var expenseModel: ExpenseModel
+    let manager = CoreDataManager.instance
+    private var task: Task<(), Never>?
     
+    @Published var expenses: [Expense] = []
     @Published var inputExpenseAmount: String = ""
     @Published var currencies: [String] = []
     @Published var stringExpenseDate: String = DateConverter.getCurrentDate()
     
     init(expenseModel: ExpenseModel) {
         self.expenseModel = expenseModel
+        expenses = manager.expenses
         getCurrencies()
+    }
+    
+    func addExpense() {
+        manager.addExpense(name: "New", amount: 13, currency: "EUR", unnecessary: true, expenseDate: Date.now)
+        expenses = manager.expenses
     }
     
     func validAmountInput(for input: String) {

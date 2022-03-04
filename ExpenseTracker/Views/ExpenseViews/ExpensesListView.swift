@@ -8,8 +8,23 @@
 import SwiftUI
 
 struct ExpensesListView: View {
+    
+    @StateObject var expenseViewModel = ExpenseViewModel(expenseModel: ExpenseModel())
+    
     var body: some View {
-        ExpenseFormView()
+        List {
+            ForEach(expenseViewModel.expenses, id: \.self) { expense in
+                Button {
+                    
+                } label: {
+                    HStack {
+                        Text(expense.name)
+                        Text("\(expense.amount)")
+                        Text(expense.currency)
+                    }
+                }
+            }
+        }
     }
 }
 
