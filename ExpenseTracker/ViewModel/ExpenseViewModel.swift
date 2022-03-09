@@ -6,11 +6,13 @@
 //
 
 import Foundation
+import CoreData
 
 class ExpenseViewModel: ObservableObject {
     
     private var expenseModel: ExpenseModel
     let manager = CoreDataManager.instance
+    static let sharedInstance = ExpenseViewModel(expenseModel: ExpenseModel())
     private var task: Task<(), Never>?
     
     @Published var expenses: [Expense] = []
@@ -24,8 +26,8 @@ class ExpenseViewModel: ObservableObject {
         getCurrencies()
     }
     
-    func addExpense() {
-        manager.addExpense(name: "New", amount: 13, currency: "EUR", unnecessary: true, expenseDate: Date.now)
+    func addExpense(name: String) {
+        manager.addExpense(name: name, amount: 13, currency: "EUR", unnecessary: true, expenseDate: Date.now)
         expenses = manager.expenses
     }
     

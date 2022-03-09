@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ExpensesListView: View {
     
-    @StateObject var expenseViewModel = ExpenseViewModel(expenseModel: ExpenseModel())
+    @StateObject var expenseViewModel = ExpenseViewModel.sharedInstance
     
     var body: some View {
         List {

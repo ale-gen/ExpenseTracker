@@ -10,7 +10,7 @@ import Combine
 
 struct ExpenseFormView: View {
     
-    @StateObject var expenseViewModel = ExpenseViewModel(expenseModel: ExpenseModel())
+    @StateObject var expenseViewModel = ExpenseViewModel.sharedInstance
     @State var expenseName: String = ""
     @State var inputExpenseAmount: String = ""
     @State var selectedCurrency: Int = 0
@@ -77,7 +77,7 @@ struct ExpenseFormView: View {
         .navigationBarTitle("New expense")
         .navigationBarItems(trailing:
                                 Button {
-            expenseViewModel.addExpense()
+            expenseViewModel.addExpense(name: expenseName)
         } label: {
             Text("Save")
         }
