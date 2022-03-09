@@ -9,6 +9,7 @@ import SwiftUI
 
 struct CategoryListView: View {
     
+    @Environment(\.presentationMode) var presenationMode
     @StateObject var categoryViewModel = CategoryViewModel(fetcher: EmojiFetcher())
     @Binding var chosenCategory: String
     
@@ -19,6 +20,7 @@ struct CategoryListView: View {
                     withAnimation {
                         chosenCategory = category.name
                     }
+                    presenationMode.wrappedValue.dismiss()
                 } label: {
                     HStack {
                         Text(category.icon ?? K.noCategoryIcon)

@@ -10,6 +10,7 @@ import Combine
 
 struct ExpenseFormView: View {
     
+    @Environment(\.presentationMode) var presentationMode
     @StateObject var expenseViewModel = ExpenseViewModel.sharedInstance
     @State var expenseName: String = ""
     @State var inputExpenseAmount: String = ""
@@ -78,6 +79,7 @@ struct ExpenseFormView: View {
         .navigationBarItems(trailing:
                                 Button {
             expenseViewModel.addExpense(name: expenseName)
+            presentationMode.wrappedValue.dismiss()
         } label: {
             Text("Save")
         }
