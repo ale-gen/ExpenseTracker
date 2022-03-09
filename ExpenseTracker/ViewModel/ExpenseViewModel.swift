@@ -20,14 +20,20 @@ class ExpenseViewModel: ObservableObject {
     @Published var currencies: [String] = []
     @Published var stringExpenseDate: String = DateConverter.getCurrentDate()
     
+    private var convertedAmount: Double {
+        return Double(inputExpenseAmount) ?? 0.0
+    }
+    
     init(expenseModel: ExpenseModel) {
         self.expenseModel = expenseModel
         expenses = manager.expenses
         getCurrencies()
     }
     
-    func addExpense(name: String) {
-        manager.addExpense(name: name, amount: 13, currency: "EUR", unnecessary: true, expenseDate: Date.now)
+    func addExpense(name: String, category: ExpenseCategory, currency: String, unnecessary: Bool) {
+        let dateFormatter = DateFormatter()
+        let date = dateFormatter.date(from: stringExpenseDate) ?? Date.now
+        manager.addExpense(name: name, amount: convertedAmount, currency: currency, unnecessary: unnecessary, expenseDate: date)
         expenses = manager.expenses
     }
     

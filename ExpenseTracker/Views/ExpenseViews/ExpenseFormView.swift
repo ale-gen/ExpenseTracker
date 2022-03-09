@@ -18,7 +18,7 @@ struct ExpenseFormView: View {
     @State var isOptional: Bool = false
     @State var selectedDate: Date = Date.now
     @State var isDateChosen: Bool = true
-    @State var chosenCategory: String = ""
+    @State var chosenCategory: ExpenseCategory? = nil
     
     var body: some View {
         Form {
@@ -28,7 +28,7 @@ struct ExpenseFormView: View {
                     HStack {
                         Text("Category")
                         Spacer()
-                        Text(chosenCategory)
+                        Text(chosenCategory?.name ?? "")
                     }
                 }
             }
@@ -78,12 +78,12 @@ struct ExpenseFormView: View {
         .navigationBarTitle("New expense")
         .navigationBarItems(trailing:
                                 Button {
-            expenseViewModel.addExpense(name: expenseName)
+            expenseViewModel.addExpense(name: expenseName, category: chosenCategory!, currency: expenseViewModel.currencies[selectedCurrency], unnecessary: isOptional)
             presentationMode.wrappedValue.dismiss()
         } label: {
             Text("Save")
         }
-                                .disabled(expenseName.isEmpty || chosenCategory.isEmpty || inputExpenseAmount.isEmpty)
+                                .disabled(expenseName.isEmpty || chosenCategory == nil || inputExpenseAmount.isEmpty)
         )
     }
 }
