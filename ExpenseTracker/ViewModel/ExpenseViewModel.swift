@@ -31,6 +31,11 @@ class ExpenseViewModel: ObservableObject {
         expenses = manager.expenses
     }
     
+    func deleteExpense(indexSet: IndexSet) {
+        manager.deleteExpense(for: indexSet)
+        expenses = manager.expenses
+    }
+    
     func validAmountInput(for input: String) {
         inputExpenseAmount = NumbersOnly.filterNumbers(for: input)
     }

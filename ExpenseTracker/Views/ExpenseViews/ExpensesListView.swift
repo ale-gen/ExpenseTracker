@@ -23,7 +23,7 @@ struct ExpensesListView: View {
                         Text(expense.currency)
                     }
                 }
-            }
+            }.onDelete(perform: expenseViewModel.deleteExpense)
         }
     }
 }
