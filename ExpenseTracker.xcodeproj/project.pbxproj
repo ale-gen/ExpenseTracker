@@ -15,6 +15,7 @@
 		7A26469627C3F8480059EA2F /* EmojiFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A26469527C3F8480059EA2F /* EmojiFormatter.swift */; };
 		7A2CEBA127C5486300D30EF9 /* EmojiCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A2CEBA027C5486300D30EF9 /* EmojiCell.swift */; };
 		7A2CEBA327C54B4D00D30EF9 /* EmojiCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A2CEBA227C54B4D00D30EF9 /* EmojiCollection.swift */; };
+		7A3E30B127DF3B7F007A07F3 /* ExpenseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A3E30B027DF3B7F007A07F3 /* ExpenseCell.swift */; };
 		7A4702FB27CEA6C90026DC18 /* CategoryListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A4702FA27CEA6C90026DC18 /* CategoryListView.swift */; };
 		7A63CB3A27C8DFF700CA39AB /* Expense.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A63CB3927C8DFF700CA39AB /* Expense.swift */; };
 		7A65EE2127C011560010E174 /* HomeTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A65EE2027C011560010E174 /* HomeTabView.swift */; };
@@ -64,6 +65,7 @@
 		7A26469527C3F8480059EA2F /* EmojiFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiFormatter.swift; sourceTree = "<group>"; };
 		7A2CEBA027C5486300D30EF9 /* EmojiCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiCell.swift; sourceTree = "<group>"; };
 		7A2CEBA227C54B4D00D30EF9 /* EmojiCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiCollection.swift; sourceTree = "<group>"; };
+		7A3E30B027DF3B7F007A07F3 /* ExpenseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseCell.swift; sourceTree = "<group>"; };
 		7A4702FA27CEA6C90026DC18 /* CategoryListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryListView.swift; sourceTree = "<group>"; };
 		7A63CB3927C8DFF700CA39AB /* Expense.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Expense.swift; sourceTree = "<group>"; };
 		7A65EE2027C011560010E174 /* HomeTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabView.swift; sourceTree = "<group>"; };
@@ -132,6 +134,7 @@
 			children = (
 				7A20743C27CA93840078180C /* ExpenseFormView.swift */,
 				7AF1CCD027CD97760067F451 /* ExpensesListView.swift */,
+				7A3E30B027DF3B7F007A07F3 /* ExpenseCell.swift */,
 			);
 			path = ExpenseViews;
 			sourceTree = "<group>";
@@ -399,6 +402,7 @@
 				7A65EE2327C015B80010E174 /* SettingsTabView.swift in Sources */,
 				7A65EE2127C011560010E174 /* HomeTabView.swift in Sources */,
 				7A26469127C3E8DD0059EA2F /* EmojiFetcher.swift in Sources */,
+				7A3E30B127DF3B7F007A07F3 /* ExpenseCell.swift in Sources */,
 				7ABF6A7C27C17653000B4A3C /* ExpenseCategory.swift in Sources */,
 				7AF1CCD127CD97760067F451 /* ExpensesListView.swift in Sources */,
 				7AE18D9B27BFBDA300F120D6 /* Constants.swift in Sources */,

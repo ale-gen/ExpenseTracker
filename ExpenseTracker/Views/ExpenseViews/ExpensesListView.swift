@@ -17,11 +17,7 @@ struct ExpensesListView: View {
                 Button {
                     
                 } label: {
-                    HStack {
-                        Text(expense.name)
-                        Text("\(expense.amount)")
-                        Text(expense.currency)
-                    }
+                    ExpenseCell(expense: expense)
                 }
             }.onDelete(perform: expenseViewModel.deleteExpense)
         }
