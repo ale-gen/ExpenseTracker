@@ -1,0 +1,15 @@
+version: '3'
+
+volumes:
+ expenseTracker-volume:
+
+services:
+  expenseTrackerDatabase:
+    image: "postgres:latest"
+    restart: unless-stopped
+    ports:
+      - 5432:5432
+    env_file:
+      - ./.env
+    volumes:
+      - expenseTracker-volume:/var/lib/postgresql/data/
