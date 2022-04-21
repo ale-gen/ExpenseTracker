@@ -1,8 +1,5 @@
 version: '3'
 
-volumes:
- expenseTracker-volume:
-
 services:
   expenseTrackerDatabase:
     image: "postgres:latest"
@@ -12,4 +9,7 @@ services:
     env_file:
       - ./.env
     volumes:
-      - expenseTracker-volume:/var/lib/postgresql/data/
+      - expenseTracker_data:/var/lib/postgresql/data/
+
+volumes:
+  expenseTracker_data:

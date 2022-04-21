@@ -38,12 +38,13 @@ public class Expense implements Serializable {
 
     public Expense() {}
 
-    public Expense(String name, double amount, String currency, Date expenseDate, boolean unnecessary) {
+    public Expense(String name, double amount, String currency, Date expenseDate, boolean unnecessary, ExpenseCategory category) {
         this.name = name;
         this.amount = amount;
         this.currency = currency;
         this.expenseDate = expenseDate;
         this.unnecessary = unnecessary;
+        this.category = category;
     }
 
     public long getId() {
@@ -94,10 +95,18 @@ public class Expense implements Serializable {
         this.unnecessary = unnecessary;
     }
 
+    public ExpenseCategory getCategory() {
+        return category;
+    }
+
+    public void setCategory(ExpenseCategory category) {
+        this.category = category;
+    }
+
     @Override
     public String toString() {
         return "Expense: " + id + "\nName: " + name + "\nAmount: " + amount + "\nCurrency: " 
-        + currency + "\nExpense date: " + expenseDate + "\nUnnecessary: " + unnecessary;
+        + currency + "\nExpense date: " + expenseDate + "\nUnnecessary: " + unnecessary + "\nExpense category" + category;
     }
 
 }
