@@ -2,7 +2,6 @@ package com.example.expenseTrackerService.entity;
 
 import java.io.Serializable;
 import java.util.List;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -71,7 +70,7 @@ public class ExpenseCategory implements Serializable {
 
     @Override
     public String toString() {
-        return "Expense category: " + id + "\nName: " + name + "\nEmoji: " + emoji + "\nExpenses: " + expenses;
+        return "Expense category: " + id + "\nName: " + name + "\nEmoji: " + emoji;
     }
 
 }

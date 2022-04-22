@@ -3,7 +3,6 @@ package com.example.expenseTrackerService.controller;
 import java.util.Optional;
 import com.example.expenseTrackerService.entity.Expense;
 import com.example.expenseTrackerService.repository.ExpenseRepository;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.http.HttpStatus;
@@ -41,13 +40,11 @@ public class ExpenseController {
     @PatchMapping("/{id}")
     public ResponseEntity<Expense> updateExpense(@PathVariable("id") long id, @RequestBody Expense expense) {
         Expense foundedExpense = expensesRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Expense with id " + id + " not found"));
-        System.out.println(expense);
         foundedExpense.setName(expense.getName());
         foundedExpense.setAmount(expense.getAmount());
         foundedExpense.setCurrency(expense.getCurrency());
         foundedExpense.setExpenseDate(expense.getExpenseDate());
         foundedExpense.setUnnecessary(expense.isUnnecessary());
-        foundedExpense.setCategory(expense.getCategory());
         final Expense updatedExpense = expensesRepository.save(foundedExpense);
         return ResponseEntity.ok(updatedExpense);
     }

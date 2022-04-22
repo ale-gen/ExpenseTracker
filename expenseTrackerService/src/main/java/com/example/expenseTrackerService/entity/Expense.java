@@ -2,12 +2,10 @@ package com.example.expenseTrackerService.entity;
 
 import java.io.Serializable;
 import java.util.Date;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -29,22 +27,20 @@ public class Expense implements Serializable {
     @NotBlank(message = "Currency is mandatory")
     private String currency;
 
+    @NotNull(message = "Date is mandatory")
     private Date expenseDate;
 
+    @NotNull(message = "You have to assess if expense is optional")
     private boolean unnecessary;
-
-    @ManyToOne
-    private ExpenseCategory category;
 
     public Expense() {}
 
-    public Expense(String name, double amount, String currency, Date expenseDate, boolean unnecessary, ExpenseCategory category) {
+    public Expense(String name, double amount, String currency, Date expenseDate, boolean unnecessary) {
         this.name = name;
         this.amount = amount;
         this.currency = currency;
         this.expenseDate = expenseDate;
         this.unnecessary = unnecessary;
-        this.category = category;
     }
 
     public long getId() {
@@ -95,18 +91,10 @@ public class Expense implements Serializable {
         this.unnecessary = unnecessary;
     }
 
-    public ExpenseCategory getCategory() {
-        return category;
-    }
-
-    public void setCategory(ExpenseCategory category) {
-        this.category = category;
-    }
-
     @Override
     public String toString() {
         return "Expense: " + id + "\nName: " + name + "\nAmount: " + amount + "\nCurrency: " 
-        + currency + "\nExpense date: " + expenseDate + "\nUnnecessary: " + unnecessary + "\nExpense category" + category;
+        + currency + "\nExpense date: " + expenseDate + "\nUnnecessary: " + unnecessary;
     }
 
 }
