@@ -10,7 +10,7 @@ import CoreData
 
 struct CategoriesTabView: View {
     
-    @StateObject var categoryViewModel = CategoryViewModel(fetcher: EmojiFetcher())
+    @EnvironmentObject var categoryViewModel: CategoryViewModel
     @State var searchText: String = ""
     
     var body: some View {
@@ -34,18 +34,14 @@ struct CategoriesTabView: View {
                         
                     } else {
                         List {
-                            TextField("Search", text: $searchText)
-                                .padding(7)
-                                .background(Color("ComponentsColor"))
-                                .cornerRadius(10)
-                            
-                            ForEach(categoryViewModel.categories.filter{ searchText.isEmpty || $0.name.lowercased().contains(searchText.lowercased())
-                            }, id: \.self) { category in
+                            ForEach(categoryViewModel.categories.filter({ category in
+                                searchText.isEmpty || category.name.contains(searchText)
+                            }), id: \.self) { category in
                                 HStack {
                                     Text(category.icon ?? K.noCategoryIcon)
                                     Text(category.name)
                                     Spacer()
-                                    if let expensesForCategory = category.expenses?.count {
+                                    if let expensesForCategory = category.expenses.count {
                                         Text("\(expensesForCategory)")
                                             .foregroundColor(.gray)
                                         Image(systemName: "chevron.forward")
@@ -53,19 +49,21 @@ struct CategoriesTabView: View {
                                             .foregroundColor(.gray)
                                     }
                                 }
-                                .onTapGesture {
-                                    categoryViewModel.updateCategory(for: category, name: "Food", icon: "🍏")
-                                }
+//                                .onTapGesture {
+//                                    categoryViewModel.updateCategory(for: category, name: "Food", icon: "🍏")
+//                                }
                             }
-                            .onDelete(perform: categoryViewModel.deleteCategory)
+//                            .onDelete(perform: categoryViewModel.deleteCategory)
                         }
+                        .padding(10)
                         .menuIndicator(.visible)
                     }
                 }
+                .searchable(text: $searchText)
                 .navigationBarTitle(Text("Categories"))
                 .navigationBarItems(trailing:
                                         NavigationLink {
-                    NewCategoryView(categoryViewModel: categoryViewModel)
+                    NewCategoryView()
                 } label: {
                     Label("Add Item", systemImage: "plus")
                 }
@@ -78,6 +76,6 @@ struct CategoriesTabView: View {
 
 struct GroupTabView_Previews: PreviewProvider {
     static var previews: some View {
-        CategoriesTabView(categoryViewModel: CategoryViewModel(fetcher: EmojiFetcher()))
+        CategoriesTabView()
     }
 }

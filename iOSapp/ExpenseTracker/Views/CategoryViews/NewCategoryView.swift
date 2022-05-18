@@ -10,7 +10,7 @@ import SwiftUI
 struct NewCategoryView: View {
     
     @Environment(\.presentationMode) var presentationMode
-    @StateObject var categoryViewModel = CategoryViewModel(fetcher: EmojiFetcher())
+    @EnvironmentObject var categoryViewModel: CategoryViewModel
     @State var categoryName: String = ""
     @State var selectedCategory: String = ""
     @State var isEmojiPicked: Bool = false
@@ -56,7 +56,7 @@ struct NewCategoryView: View {
             Button {
                 if !categoryName.isEmpty {
                     let emojiUnicode = EmojiFormatter.convertEmoji(for: emojiPicked?.unicode.first ?? K.noCategoryIconUnicode)
-                    categoryViewModel.addCategory(name: categoryName, icon: emojiUnicode)
+//                    categoryViewModel.addCategory(name: categoryName, icon: emojiUnicode)
                     presentationMode.wrappedValue.dismiss()
                 }
             } label: {

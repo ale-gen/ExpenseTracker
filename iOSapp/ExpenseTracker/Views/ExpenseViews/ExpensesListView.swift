@@ -13,13 +13,15 @@ struct ExpensesListView: View {
     
     var body: some View {
         List {
-            ForEach(expenseViewModel.expenses, id: \.self) { expense in
+            ForEach(0..<expenseViewModel.expenses.count, id: \.self) { expenseIndex in
+                let expense = expenseViewModel.expenses[expenseIndex]
                 Button {
                     
                 } label: {
                     ExpenseCell(expense: expense)
                 }
-            }.onDelete(perform: expenseViewModel.deleteExpense)
+            }
+//            .onDelete(perform: expenseViewModel.deleteExpense)
         }
     }
 }

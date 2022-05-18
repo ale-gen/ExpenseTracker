@@ -78,7 +78,7 @@ struct ExpenseFormView: View {
         .navigationBarTitle("New expense")
         .navigationBarItems(trailing:
                                 Button {
-            expenseViewModel.addExpense(name: expenseName, category: chosenCategory!, currency: expenseViewModel.currencies[selectedCurrency], unnecessary: isOptional)
+            //            expenseViewModel.addExpense(name: expenseName, category: chosenCategory!, currency: expenseViewModel.currencies[selectedCurrency], unnecessary: isOptional)
             presentationMode.wrappedValue.dismiss()
         } label: {
             Text("Save")

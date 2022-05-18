@@ -23,16 +23,16 @@ public class ExpenseCategory implements Serializable {
     @NotBlank(message = "Name is mandatory")
     private String name;
 
-    private String emoji;
+    private String icon;
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Expense> expenses;
 
     public ExpenseCategory() {}
 
-    public ExpenseCategory(String name, String emoji, List<Expense> expenses) {
+    public ExpenseCategory(String name, String icon, List<Expense> expenses) {
         this.name = name;
-        this.emoji = emoji;
+        this.icon = icon;
         this.expenses = expenses;
     }
 
@@ -52,12 +52,12 @@ public class ExpenseCategory implements Serializable {
         this.name = name;
     }
 
-    public String getEmoji() {
-        return emoji;
+    public String getIcon() {
+        return icon;
     }
 
-    public void setEmoji(String emoji) {
-        this.emoji = emoji;
+    public void setIcon(String icon) {
+        this.icon = icon;
     }
 
     public List<Expense> getExpenses() {
@@ -70,7 +70,7 @@ public class ExpenseCategory implements Serializable {
 
     @Override
     public String toString() {
-        return "Expense category: " + id + "\nName: " + name + "\nEmoji: " + emoji;
+        return "Expense category: " + id + "\nName: " + name + "\nIcon: " + icon;
     }
 
 }

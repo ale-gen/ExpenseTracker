@@ -6,10 +6,11 @@
 //
 
 import SwiftUI
-import CoreData
 
 struct ContentView: View {
-
+    
+    @StateObject var categoryViewModel = CategoryViewModel(categoryFetcher: CategoryFetcher(), emojiFetcher: EmojiFetcher())
+    
     var body: some View {
         TabView {
             HomeTabView()
@@ -27,6 +28,7 @@ struct ContentView: View {
                         Image(systemName: K.categoriesTabIcon)
                     }
                 }
+                .environmentObject(categoryViewModel)
             
             SettingsTabView()
                 .tabItem {
@@ -36,11 +38,14 @@ struct ContentView: View {
                     }
                 }
         }
+        .onAppear {
+            categoryViewModel.getCategories()
+        }
     }
 }
-//
-//struct ContentView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ContentView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
-//    }
-//}
+
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView()
+    }
+}

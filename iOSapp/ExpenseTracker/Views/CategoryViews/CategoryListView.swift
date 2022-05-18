@@ -10,12 +10,13 @@ import SwiftUI
 struct CategoryListView: View {
     
     @Environment(\.presentationMode) var presenationMode
-    @StateObject var categoryViewModel = CategoryViewModel(fetcher: EmojiFetcher())
+    @StateObject var categoryViewModel = CategoryViewModel(categoryFetcher: CategoryFetcher(), emojiFetcher: EmojiFetcher())
     @Binding var chosenCategory: ExpenseCategory?
     
     var body: some View {
         List {
-            ForEach(categoryViewModel.categories, id: \.self) { category in
+            ForEach(0..<categoryViewModel.categories.count, id: \.self) { categoryIndex in
+                let category = categoryViewModel.categories[categoryIndex]
                 Button {
                     withAnimation {
                         chosenCategory = category
@@ -37,6 +38,9 @@ struct CategoryListView: View {
                     }
                 }.foregroundColor(.primary)
             }
+        }
+        .onAppear {
+            categoryViewModel.getCategories()
         }
     }
 }

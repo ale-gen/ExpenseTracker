@@ -14,7 +14,7 @@ struct ExpenseCell: View {
         HStack {
             VStack {
                 Text(expense.name)
-                Text(expense.category.name)
+//                Text(expense.category.name)
             }
             Spacer()
             Text("\(expense.currency) \(String(format: "%.2f", expense.amount))")

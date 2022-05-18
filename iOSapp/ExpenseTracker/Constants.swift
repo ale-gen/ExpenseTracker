@@ -9,6 +9,7 @@ import Foundation
 import SwiftUI
 
 struct K {
+    static let baseUrl = "http://localhost:8080"
     static let noCategoryIcon = "❓"
     static let noCategoryIconUnicode = "U+2753"
     static let noCategoriesImageName = "emptyData"

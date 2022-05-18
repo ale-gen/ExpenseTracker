@@ -16,7 +16,8 @@ struct EmojiCollection: View {
     var body: some View {
         ScrollView(.horizontal) {
             LazyHGrid(rows: layout, alignment: .top, spacing: 10) {
-                ForEach(emojis, id: \.self) { emoji in
+                ForEach(0..<emojis.count, id: \.self) { emojiIndex in
+                    let emoji = emojis[emojiIndex]
                     EmojiCell(emoji: emoji)
                         .onTapGesture {
                             emojiPicked = emoji

@@ -42,7 +42,7 @@ public class ExpenseCategoryController {
     public ResponseEntity<ExpenseCategory> updateExpenseCategory(@PathVariable("id") long id, @RequestBody ExpenseCategory expenseCategory) {
         ExpenseCategory foundedCategory = categoriesRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Expense category with id " + id + " not found"));
         foundedCategory.setName(expenseCategory.getName());
-        foundedCategory.setEmoji(expenseCategory.getEmoji());
+        foundedCategory.setIcon(expenseCategory.getIcon());
         foundedCategory.setExpenses(expenseCategory.getExpenses());
         final ExpenseCategory updatedCategory = categoriesRepository.save(foundedCategory);
         return ResponseEntity.ok(updatedCategory);

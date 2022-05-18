@@ -11,7 +11,6 @@ import CoreData
 class ExpenseViewModel: ObservableObject {
     
     private var expenseModel: ExpenseModel
-    let manager = CoreDataManager.instance
     static let sharedInstance = ExpenseViewModel(expenseModel: ExpenseModel())
     private var task: Task<(), Never>?
     
@@ -26,21 +25,21 @@ class ExpenseViewModel: ObservableObject {
     
     init(expenseModel: ExpenseModel) {
         self.expenseModel = expenseModel
-        expenses = manager.expenses
+//        expenses = manager.expenses
         getCurrencies()
     }
     
-    func addExpense(name: String, category: ExpenseCategory, currency: String, unnecessary: Bool) {
-        let dateFormatter = DateFormatter()
-        let date = dateFormatter.date(from: stringExpenseDate) ?? Date.now
-        manager.addExpense(name: name, amount: convertedAmount, currency: currency, unnecessary: unnecessary, expenseDate: date)
-        expenses = manager.expenses
-    }
-    
-    func deleteExpense(indexSet: IndexSet) {
-        manager.deleteExpense(for: indexSet)
-        expenses = manager.expenses
-    }
+//    func addExpense(name: String, category: ExpenseCategory, currency: String, unnecessary: Bool) {
+//        let dateFormatter = DateFormatter()
+//        let date = dateFormatter.date(from: stringExpenseDate) ?? Date.now
+//        manager.addExpense(name: name, amount: convertedAmount, currency: currency, unnecessary: unnecessary, expenseDate: date)
+//        expenses = manager.expenses
+//    }
+//
+//    func deleteExpense(indexSet: IndexSet) {
+//        manager.deleteExpense(for: indexSet)
+//        expenses = manager.expenses
+//    }
     
     func validAmountInput(for input: String) {
         inputExpenseAmount = NumbersOnly.filterNumbers(for: input)

@@ -13,12 +13,7 @@ protocol EmojiFetcherProtocol {
     func getByCategory(for categoryName: String) async throws
 }
 
-enum FetcherError: Error {
-    case invalidURL
-    case invalidData
-}
-
-class EmojiFetcher: EmojiFetcherProtocol {
+class EmojiFetcher: EmojiFetcherProtocol, RequestProtocol {
     private let session: URLSession
     private let baseUrlString = "https://emojihub.herokuapp.com/api/all"
     
@@ -27,11 +22,11 @@ class EmojiFetcher: EmojiFetcherProtocol {
     }
     
     func getAll() async throws -> [Emoji] {
-        guard let url = URL(string: baseUrlString) else { throw FetcherError.invalidURL }
+        guard let url = URL(string: baseUrlString) else { throw NetworkError.invalidURL }
         let request = createRequest(url: url, method: "GET")
         let (data, _) = try await session.data(for: request)
         print("GET ALL: \(data)")
-        guard let emojis = try? JSONDecoder().decode([Emoji].self, from: data) else { throw FetcherError.invalidData }
+        guard let emojis = try? JSONDecoder().decode([Emoji].self, from: data) else { throw NetworkError.invalidData }
         return emojis
     }
     
@@ -40,17 +35,10 @@ class EmojiFetcher: EmojiFetcherProtocol {
             ch == " " ? "_" : ch
         }
         let urlString = "\(baseUrlString)/category_\(searchCategory)"
-        guard let url = URL(string: urlString) else { throw FetcherError.invalidURL }
+        guard let url = URL(string: urlString) else { throw NetworkError.invalidURL }
         let request = createRequest(url: url, method: "GET")
         let (data, _) = try await session.data(for: request)
         print("GET BY CATEGORY: \(data)")
         return
-        
-    }
-    
-    private func createRequest(url: URL, method: String?) -> URLRequest {
-        var request = URLRequest(url: url)
-        request.httpMethod = method
-        return request
     }
 }

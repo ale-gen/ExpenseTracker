@@ -6,13 +6,11 @@
 //
 
 import Foundation
-import CoreData
 
-public class Expense: NSManagedObject {
-    @NSManaged var name: String
-    @NSManaged var category: ExpenseCategory
-    @NSManaged var amount: Double
-    @NSManaged var currency: String
-    @NSManaged var expenseDate: Date
-    @NSManaged var unnecessary: Bool
+struct Expense: Decodable {
+    let name: String
+    let amount: Double
+    let currency: String
+    let expenseDate: String
+    let unnecessary: Bool
 }
