@@ -6,8 +6,8 @@
 //
 
 import Foundation
-import CoreData
 
+@MainActor
 class CategoryViewModel: ObservableObject {
     
     private var categoryFetcher: CategoryFetcher
@@ -17,6 +17,9 @@ class CategoryViewModel: ObservableObject {
     @Published var categories: [ExpenseCategory] = []
     @Published var emojis: [Emoji] = []
     @Published var isLoading: Bool = false
+    @Published var isErrorAppeared: Bool = false
+    @Published var errorAlertTitle: String = ""
+    @Published var errorMessage: String = ""
     
     init(categoryFetcher: CategoryFetcher, emojiFetcher: EmojiFetcher) {
         self.categoryFetcher = categoryFetcher
@@ -31,7 +34,6 @@ class CategoryViewModel: ObservableObject {
         }
     }
     
-    @MainActor
     func getCategories() {
         task = Task {
             isLoading = true
@@ -44,26 +46,49 @@ class CategoryViewModel: ObservableObject {
         }
     }
     
-    //    func addCategory(name: String, icon: String?) {
-    //        if let userIcon = icon {
-    //            manager.addCategory(name: name, icon: userIcon)
-    //        } else {
-    //            manager.addCategory(name: name)
-    //        }
-    //        categories = manager.categories
-    //    }
-    //
-    //    func deleteCategory(indexSet: IndexSet) {
-    //        manager.deleteCategory(for: indexSet)
-    //        categories = manager.categories
-    //    }
+    func addCategory(name: String, userIcon: String = K.noCategoryIcon) {
+        task = Task {
+            do {
+                let isAdded = try await categoryFetcher.addCategory(name: name, icon: userIcon)
+                isErrorAppeared = !isAdded
+                self.getCategories()
+            } catch let error {
+                isErrorAppeared = true
+                errorAlertTitle = "Cannot add category"
+                errorMessage = "There occurs some error during adding new category. Please try again."
+                print("Error during creating category: \(error.localizedDescription)")
+            }
+        }
+    }
+    
+    func deleteCategory(indexSet: IndexSet) {
+        let idToDelete = indexSet.map { categories[$0].id }
+        
+        guard idToDelete.count == 1 else {
+            isErrorAppeared = true
+            errorAlertTitle = "Cannot delete category"
+            errorMessage = "Number of chosen categories is not correct. Please try again."
+            return
+        }
+        
+        task = Task {
+            do {
+                let isDeleted = try await categoryFetcher.deleteCategory(id: idToDelete[0])
+                self.getCategories()
+                isErrorAppeared = !isDeleted
+            } catch let error {
+                isErrorAppeared = true
+                errorMessage = "There occurs a problem during deleting chosen category. Please try again."
+                print("Error during deleting category: \(error.localizedDescription)")
+            }
+        }
+    }
     //
     //    func updateCategory(for category: ExpenseCategory, name: String?, icon: String?) {
     //        manager.editCategory(for: category, newName: name, newIcon: icon)
     //        categories = manager.categories
     //    }
     
-    @MainActor
     func getAllEmojis() {
         task = Task {
             do {

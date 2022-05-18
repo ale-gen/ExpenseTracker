@@ -56,7 +56,7 @@ struct NewCategoryView: View {
             Button {
                 if !categoryName.isEmpty {
                     let emojiUnicode = EmojiFormatter.convertEmoji(for: emojiPicked?.unicode.first ?? K.noCategoryIconUnicode)
-//                    categoryViewModel.addCategory(name: categoryName, icon: emojiUnicode)
+                    categoryViewModel.addCategory(name: categoryName, userIcon: emojiUnicode)
                     presentationMode.wrappedValue.dismiss()
                 }
             } label: {

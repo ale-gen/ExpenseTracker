@@ -53,7 +53,7 @@ struct CategoriesTabView: View {
 //                                    categoryViewModel.updateCategory(for: category, name: "Food", icon: "🍏")
 //                                }
                             }
-//                            .onDelete(perform: categoryViewModel.deleteCategory)
+                            .onDelete(perform: delete)
                         }
                         .padding(10)
                         .menuIndicator(.visible)
@@ -71,6 +71,10 @@ struct CategoriesTabView: View {
                     categoryViewModel.getAllEmojis()
                 }))            )}
         }
+    }
+    
+    func delete(at offsets: IndexSet) {
+        categoryViewModel.deleteCategory(indexSet: offsets)
     }
 }
 

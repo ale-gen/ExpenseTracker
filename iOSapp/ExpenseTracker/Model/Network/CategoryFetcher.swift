@@ -35,4 +35,38 @@ class CategoryFetcher: CategoryFetcherProtocol, RequestProtocol {
         }
         return []
     }
+    
+    func addCategory(name: String, icon: String) async throws -> Bool {
+        guard let url = URL(string: urlString) else { throw NetworkError.invalidURL }
+        let postBody = ["name": name, "icon": icon]
+        let request = createRequest(url: url, method: "POST", postBody: postBody)
+        let (_, response) = try await session.data(for: request)
+        
+        if let httpResponse = response as? HTTPURLResponse {
+            switch httpResponse.statusCode {
+            case 200:
+                return true
+            default:
+                throw NetworkError.unknown
+            }
+        }
+        return false
+    }
+    
+    func deleteCategory(id: Int) async throws -> Bool {
+        let deletingUrl = "\(urlString)/\(id)"
+        guard let url = URL(string: deletingUrl) else { throw NetworkError.invalidURL }
+        let request = createRequest(url: url, method: "DELETE")
+        let (_, response) = try await session.data(for: request)
+        
+        if let httpResponse = response as? HTTPURLResponse {
+            switch httpResponse.statusCode {
+            case 200:
+                return true
+            default:
+                throw NetworkError.unknown
+            }
+        }
+        return false
+    }
 }
