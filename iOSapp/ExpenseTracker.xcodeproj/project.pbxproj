@@ -203,13 +203,21 @@
 		7ABF6A7A27C175CA000B4A3C /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				7AD32C882836BA8B009BE7DF /* Entities */,
 				7A63CB3727C8DF6F00CA39AB /* Network */,
-				7ABF6A7B27C17653000B4A3C /* ExpenseCategory.swift */,
-				7A26469227C3EF150059EA2F /* Emoji.swift */,
-				7A63CB3927C8DFF700CA39AB /* Expense.swift */,
 				7AB482A827CBCDEC00003A47 /* ExpenseModel.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		7AD32C882836BA8B009BE7DF /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				7A26469227C3EF150059EA2F /* Emoji.swift */,
+				7ABF6A7B27C17653000B4A3C /* ExpenseCategory.swift */,
+				7A63CB3927C8DFF700CA39AB /* Expense.swift */,
+			);
+			path = Entities;
 			sourceTree = "<group>";
 		};
 		7ADDB21627C2E55D00443E25 /* ViewModel */ = {

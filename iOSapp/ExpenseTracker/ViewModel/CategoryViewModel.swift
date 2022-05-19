@@ -17,6 +17,8 @@ class CategoryViewModel: ObservableObject {
     @Published var categories: [ExpenseCategory] = []
     @Published var emojis: [Emoji] = []
     @Published var isLoading: Bool = false
+    @Published var chosenCategory: String = ""
+    
     @Published var isErrorAppeared: Bool = false
     @Published var errorAlertTitle: String = ""
     @Published var errorMessage: String = ""
@@ -91,6 +93,18 @@ class CategoryViewModel: ObservableObject {
                 emojis = try await emojiFetcher.getAll()
             } catch let error {
                 print("Error during emoji fetching: \(error.localizedDescription)")
+            }
+            isLoading = false
+        }
+    }
+    
+    func getEmojisForChosenCategory() {
+        task = Task {
+            do {
+                isLoading = true
+                emojis = try await emojiFetcher.getByCategory(for: chosenCategory)
+            } catch let error {
+                print("Error during emoji for chosen category fetching: \(error.localizedDescription)")
             }
             isLoading = false
         }

@@ -15,7 +15,7 @@ struct K {
     static let noResultsImageName = "emptyData"
     static let containerName = "ExpenseTracker"
     
-    static let iconCategories = ["Smileys and people", "Animals and nature", "Food and drink", "Travel and places", "Activities", "Objects", "Symbols", "Flags"]
+    static let iconCategories = ["smileys and people", "animals and nature", "food and drink", "travel and places", "activities", "objects", "symbols", "flags"]
     
     //MARK: - Tab names
     static let homeTabName = "Home"

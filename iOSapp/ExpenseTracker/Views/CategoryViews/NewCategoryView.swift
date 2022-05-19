@@ -12,7 +12,6 @@ struct NewCategoryView: View {
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var categoryViewModel: CategoryViewModel
     @State var categoryName: String = ""
-    @State var selectedCategory: String = ""
     @State var isEmojiPicked: Bool = false
     @State var emojiPicked: Emoji? = nil
     
@@ -22,9 +21,9 @@ struct NewCategoryView: View {
                 TextField("Expense category name", text: $categoryName) {
 
                 }
-                Picker("Icon category", selection: $selectedCategory) {
+                Picker("Icon category", selection: $categoryViewModel.chosenCategory) {
                     ForEach(K.iconCategories, id: \.self) { iconCategory in
-                        Text(iconCategory)
+                        Text(iconCategory.capitalized)
                         .navigationTitle("Icon categories")
                     }
                 }
@@ -71,6 +70,9 @@ struct NewCategoryView: View {
             .disabled(categoryName.isEmpty)
             .buttonStyle(PlainButtonStyle())
         }
+        .onChange(of: categoryViewModel.chosenCategory, perform: { _ in
+            categoryViewModel.getEmojisForChosenCategory()
+        })
         .navigationBarTitle("New category")
     }
     
