@@ -12,7 +12,7 @@ struct K {
     static let baseUrl = "http://localhost:8080"
     static let noCategoryIcon = "❓"
     static let noCategoryIconUnicode = "U+2753"
-    static let noCategoriesImageName = "emptyData"
+    static let noResultsImageName = "emptyData"
     static let containerName = "ExpenseTracker"
     
     static let iconCategories = ["Smileys and people", "Animals and nature", "Food and drink", "Travel and places", "Activities", "Objects", "Symbols", "Flags"]

@@ -9,25 +9,39 @@ import SwiftUI
 
 struct ExpensesListView: View {
     
-    @StateObject var expenseViewModel = ExpenseViewModel.sharedInstance
+    var expenses: [Expense]
     
     var body: some View {
-        List {
-            ForEach(0..<expenseViewModel.expenses.count, id: \.self) { expenseIndex in
-                let expense = expenseViewModel.expenses[expenseIndex]
-                Button {
-                    
-                } label: {
-                    ExpenseCell(expense: expense)
+        ZStack {
+            if expenses.isEmpty {
+                NoResultsView(forExpenses: true)
+            } else {
+                List {
+                    ForEach(0..<expenses.count, id: \.self) { expenseIndex in
+                        let expense = expenses[expenseIndex]
+                        Button {
+                            //TODO: - go to expense's details
+                        } label: {
+                            ExpenseCell(expense: expense)
+                        }
+                    }
                 }
             }
-//            .onDelete(perform: expenseViewModel.deleteExpense)
         }
+        .navigationBarItems(trailing:
+                                NavigationLink {
+            ExpenseFormView()
+        } label: {
+            Label("Add Item", systemImage: "plus")
+        }
+                                .simultaneousGesture(TapGesture().onEnded({ _ in
+            
+        }))            )
     }
 }
 
 struct ExpensesListView_Previews: PreviewProvider {
     static var previews: some View {
-        ExpensesListView()
+        ExpensesListView(expenses: [])
     }
 }

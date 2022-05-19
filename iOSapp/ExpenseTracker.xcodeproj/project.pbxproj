@@ -20,6 +20,7 @@
 		7A2CEBA327C54B4D00D30EF9 /* EmojiCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A2CEBA227C54B4D00D30EF9 /* EmojiCollection.swift */; };
 		7A3E30B127DF3B7F007A07F3 /* ExpenseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A3E30B027DF3B7F007A07F3 /* ExpenseCell.swift */; };
 		7A4702FB27CEA6C90026DC18 /* CategoryListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A4702FA27CEA6C90026DC18 /* CategoryListView.swift */; };
+		7A4DC99F283669B0004C68D3 /* NoResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A4DC99E283669B0004C68D3 /* NoResultsView.swift */; };
 		7A63CB3A27C8DFF700CA39AB /* Expense.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A63CB3927C8DFF700CA39AB /* Expense.swift */; };
 		7A65EE2127C011560010E174 /* HomeTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A65EE2027C011560010E174 /* HomeTabView.swift */; };
 		7A65EE2327C015B80010E174 /* SettingsTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A65EE2227C015B80010E174 /* SettingsTabView.swift */; };
@@ -72,6 +73,7 @@
 		7A2CEBA227C54B4D00D30EF9 /* EmojiCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiCollection.swift; sourceTree = "<group>"; };
 		7A3E30B027DF3B7F007A07F3 /* ExpenseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseCell.swift; sourceTree = "<group>"; };
 		7A4702FA27CEA6C90026DC18 /* CategoryListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryListView.swift; sourceTree = "<group>"; };
+		7A4DC99E283669B0004C68D3 /* NoResultsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoResultsView.swift; sourceTree = "<group>"; };
 		7A63CB3927C8DFF700CA39AB /* Expense.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Expense.swift; sourceTree = "<group>"; };
 		7A65EE2027C011560010E174 /* HomeTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabView.swift; sourceTree = "<group>"; };
 		7A65EE2227C015B80010E174 /* SettingsTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTabView.swift; sourceTree = "<group>"; };
@@ -124,10 +126,7 @@
 		7A20743A27CA93230078180C /* CategoryViews */ = {
 			isa = PBXGroup;
 			children = (
-				7A2CEBA227C54B4D00D30EF9 /* EmojiCollection.swift */,
-				7A2CEBA027C5486300D30EF9 /* EmojiCell.swift */,
 				7A83B91027C3D8F2007A9A54 /* NewCategoryView.swift */,
-				7A65EE2427C015E00010E174 /* CategoriesTabView.swift */,
 				7A4702FA27CEA6C90026DC18 /* CategoryListView.swift */,
 			);
 			path = CategoryViews;
@@ -151,6 +150,42 @@
 				7AF1CCD227CD99340067F451 /* DateConverter.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		7A4DC9A028366E4B004C68D3 /* UtilsViews */ = {
+			isa = PBXGroup;
+			children = (
+				7A4DC99E283669B0004C68D3 /* NoResultsView.swift */,
+			);
+			path = UtilsViews;
+			sourceTree = "<group>";
+		};
+		7A4DC9A128366E62004C68D3 /* TabViews */ = {
+			isa = PBXGroup;
+			children = (
+				7A65EE2027C011560010E174 /* HomeTabView.swift */,
+				7A65EE2227C015B80010E174 /* SettingsTabView.swift */,
+				7A65EE2427C015E00010E174 /* CategoriesTabView.swift */,
+			);
+			path = TabViews;
+			sourceTree = "<group>";
+		};
+		7A4DC9A228366E6F004C68D3 /* MainViews */ = {
+			isa = PBXGroup;
+			children = (
+				7AE18D6827BFB1E100F120D6 /* ExpenseTrackerApp.swift */,
+				7AE18D6A27BFB1E100F120D6 /* ContentView.swift */,
+			);
+			path = MainViews;
+			sourceTree = "<group>";
+		};
+		7A4DC9A328366E9F004C68D3 /* EmojisViews */ = {
+			isa = PBXGroup;
+			children = (
+				7A2CEBA227C54B4D00D30EF9 /* EmojiCollection.swift */,
+				7A2CEBA027C5486300D30EF9 /* EmojiCell.swift */,
+			);
+			path = EmojisViews;
 			sourceTree = "<group>";
 		};
 		7A63CB3727C8DF6F00CA39AB /* Network */ = {
@@ -213,7 +248,6 @@
 				7ADDB21627C2E55D00443E25 /* ViewModel */,
 				7ABF6A7A27C175CA000B4A3C /* Model */,
 				7AE18D9727BFBD5200F120D6 /* Views */,
-				7AE18D6827BFB1E100F120D6 /* ExpenseTrackerApp.swift */,
 				7AE18D6C27BFB1EF00F120D6 /* Assets.xcassets */,
 				7AE18D6E27BFB1EF00F120D6 /* Preview Content */,
 				7AE18D9A27BFBDA300F120D6 /* Constants.swift */,
@@ -249,11 +283,12 @@
 		7AE18D9727BFBD5200F120D6 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				7A4DC9A328366E9F004C68D3 /* EmojisViews */,
+				7A4DC9A228366E6F004C68D3 /* MainViews */,
+				7A4DC9A128366E62004C68D3 /* TabViews */,
+				7A4DC9A028366E4B004C68D3 /* UtilsViews */,
 				7A20743B27CA933C0078180C /* ExpenseViews */,
 				7A20743A27CA93230078180C /* CategoryViews */,
-				7AE18D6A27BFB1E100F120D6 /* ContentView.swift */,
-				7A65EE2027C011560010E174 /* HomeTabView.swift */,
-				7A65EE2227C015B80010E174 /* SettingsTabView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -389,6 +424,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7A2CEBA327C54B4D00D30EF9 /* EmojiCollection.swift in Sources */,
+				7A4DC99F283669B0004C68D3 /* NoResultsView.swift in Sources */,
 				7A20743F27CA94DC0078180C /* NumbersOnly.swift in Sources */,
 				7A65EE2527C015E00010E174 /* CategoriesTabView.swift in Sources */,
 				7AE18D6B27BFB1E100F120D6 /* ContentView.swift in Sources */,

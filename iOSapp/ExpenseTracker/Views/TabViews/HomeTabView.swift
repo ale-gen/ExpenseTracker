@@ -10,14 +10,8 @@ import SwiftUI
 struct HomeTabView: View {
     var body: some View {
         NavigationView {
-            ExpensesListView()
+            ExpensesListView(expenses: [])
                 .navigationBarTitle(Text("Expenses"))
-                .navigationBarItems(trailing:
-                                        NavigationLink {
-                    ExpenseFormView()
-                } label: {
-                    Label("Add Item", systemImage: "plus")
-                })
         }
     }
 }
