@@ -42,6 +42,23 @@ class ExpenseViewModel: ObservableObject {
         getCurrencies()
     }
     
+    func getExpenses(for categoryId: Int?) {
+        guard let safeCategoryId = categoryId else {
+            isErrorAppeared = true
+            errorAlertTitle = "Cannot fetch expenses for chosen category"
+            errorMessage = "There occurs some error. Please try again."
+            print("Error during fetching expenses for chosen category.")
+            return
+        }
+        task = Task {
+            do {
+                expenses = try await expenseFetcher.getExpensesForCategory(id: safeCategoryId)
+            } catch let error {
+                print("Error during categories fetching: \(error.localizedDescription)")
+            }
+        }
+    }
+    
     func addExpense(for categoryId: Int) {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
@@ -50,6 +67,7 @@ class ExpenseViewModel: ObservableObject {
             do {
                 let isAdded = try await expenseFetcher.addExpenseToCategory(for: categoryId, name: expenseName, amount: convertedAmount, currency: currency, expenseDate: date, unnecessary: isOptional)
                 isErrorAppeared = !isAdded
+                getExpenses(for: categoryId)
             } catch let error {
                 isErrorAppeared = true
                 errorAlertTitle = "Cannot add expense"
@@ -81,5 +99,4 @@ class ExpenseViewModel: ObservableObject {
         }
         stringExpenseDate = convertedDate
     }
-    
 }

@@ -25,7 +25,7 @@ struct CategoriesTabView: View {
                                 searchText.isEmpty || category.name.contains(searchText)
                             }), id: \.self) { category in
                                 NavigationLink {
-                                    ExpensesListView(categoryId: category.id, expenses: category.expenses)
+                                    ExpensesListView(categoryId: category.id)
                                         .navigationTitle(category.name)
                                 } label: {
                                     HStack {
@@ -43,6 +43,9 @@ struct CategoriesTabView: View {
                         }
                         .padding(10)
                         .menuIndicator(.visible)
+                        .onAppear {
+                            categoryViewModel.getCategories()
+                        }
                     }
                 }
                 .searchable(text: $searchText)
@@ -56,9 +59,6 @@ struct CategoriesTabView: View {
                                         .simultaneousGesture(TapGesture().onEnded({ _ in
                     categoryViewModel.getAllEmojis()
                 }))            )}
-        }
-        .onAppear {
-            categoryViewModel.getCategories()
         }
         .environmentObject(expenseViewModel)
     }

@@ -27,6 +27,15 @@ class ExpenseFetcher: ExpenseFetcherProtocol, RequestProtocol {
         return expenses
     }
     
+    func getExpensesForCategory(id: Int) async throws -> [Expense] {
+        let expensesForCategoryUrl = "\(urlString)/categoryId=\(id)"
+        guard let url = URL(string: expensesForCategoryUrl) else { throw NetworkError.invalidURL }
+        let request = createRequest(url: url, method: "GET")
+        let (data, _) = try await session.data(for: request)
+        guard let expenses = try? JSONDecoder().decode([Expense].self, from: data) else { throw NetworkError.invalidData }
+        return expenses
+    }
+    
     func addExpenseToCategory(for categoryId: Int?, name: String, amount: Double, currency: String, expenseDate: String, unnecessary: Bool) async throws -> Bool {
         guard let id = categoryId else { throw NetworkError.invalidData }
         let newExpenseUrlString = "\(urlString)/categoryId=\(id)"

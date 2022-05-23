@@ -10,16 +10,16 @@ import SwiftUI
 struct ExpensesListView: View {
     
     var categoryId: Int
-    var expenses: [Expense]
+    @EnvironmentObject var expenseViewModel: ExpenseViewModel
     
     var body: some View {
         ZStack {
-            if expenses.isEmpty {
+            if expenseViewModel.expenses.isEmpty {
                 NoResultsView(forExpenses: true)
             } else {
                 List {
-                    ForEach(0..<expenses.count, id: \.self) { expenseIndex in
-                        let expense = expenses[expenseIndex]
+                    ForEach(0..<expenseViewModel.expenses.count, id: \.self) { expenseIndex in
+                        let expense = expenseViewModel.expenses[expenseIndex]
                         Button {
                             //TODO: - go to expense's details
                         } label: {
@@ -38,11 +38,14 @@ struct ExpensesListView: View {
                                 .simultaneousGesture(TapGesture().onEnded({ _ in
             
         }))            )
+        .onAppear {
+            expenseViewModel.getExpenses(for: categoryId)
+        }
     }
 }
 
 struct ExpensesListView_Previews: PreviewProvider {
     static var previews: some View {
-        ExpensesListView(categoryId: 1, expenses: [])
+        ExpensesListView(categoryId: 1)
     }
 }
