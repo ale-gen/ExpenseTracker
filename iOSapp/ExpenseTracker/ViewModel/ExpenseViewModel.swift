@@ -6,43 +6,61 @@
 //
 
 import Foundation
-import CoreData
 
+@MainActor
 class ExpenseViewModel: ObservableObject {
     
     private var expenseModel: ExpenseModel
-    static let sharedInstance = ExpenseViewModel(expenseModel: ExpenseModel())
+    private var expenseFetcher: ExpenseFetcher
     private var task: Task<(), Never>?
     
     @Published var expenses: [Expense] = []
-    @Published var inputExpenseAmount: String = ""
     @Published var currencies: [String] = []
     @Published var stringExpenseDate: String = DateConverter.getCurrentDate()
     
+    @Published var expenseName: String = ""
+    @Published var expenseAmount: String = ""
+    @Published var selectedCurrency: Int = 0
+    @Published var isOptional: Bool = false
+    @Published var selectedDate: Date = Date.now
+    
+    @Published var isErrorAppeared: Bool = false
+    @Published var errorAlertTitle: String = ""
+    @Published var errorMessage: String = ""
+    
     private var convertedAmount: Double {
-        return Double(inputExpenseAmount) ?? 0.0
+        return Double(expenseAmount) ?? 0.0
     }
     
-    init(expenseModel: ExpenseModel) {
+    private var currency: String {
+        return currencies[selectedCurrency]
+    }
+    
+    init(expenseModel: ExpenseModel, expenseFetcher: ExpenseFetcher) {
         self.expenseModel = expenseModel
-//        expenses = manager.expenses
+        self.expenseFetcher = expenseFetcher
         getCurrencies()
     }
     
-//    func addExpense(name: String, category: ExpenseCategory, currency: String, unnecessary: Bool) {
-//        let dateFormatter = DateFormatter()
-//        let date = dateFormatter.date(from: stringExpenseDate) ?? Date.now
-//        manager.addExpense(name: name, amount: convertedAmount, currency: currency, unnecessary: unnecessary, expenseDate: date)
-//        expenses = manager.expenses
-//    }
-//
-//    func deleteExpense(indexSet: IndexSet) {
-//        manager.deleteExpense(for: indexSet)
-//        expenses = manager.expenses
-//    }
+    func addExpense(for categoryId: Int) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        let date = dateFormatter.string(from: selectedDate)
+        task = Task {
+            do {
+                let isAdded = try await expenseFetcher.addExpenseToCategory(for: categoryId, name: expenseName, amount: convertedAmount, currency: currency, expenseDate: date, unnecessary: isOptional)
+                isErrorAppeared = !isAdded
+            } catch let error {
+                isErrorAppeared = true
+                errorAlertTitle = "Cannot add expense"
+                errorMessage = "There occurs some error during adding new category. Please try again."
+                print("Error during creating new expense: \(error.localizedDescription)")
+            }
+        }
+    }
     
     func validAmountInput(for input: String) {
-        inputExpenseAmount = NumbersOnly.filterNumbers(for: input)
+        expenseAmount = NumbersOnly.filterNumbers(for: input)
     }
     
     func getCurrencies() {

@@ -11,44 +11,31 @@ import Combine
 struct ExpenseFormView: View {
     
     @Environment(\.presentationMode) var presentationMode
-    @StateObject var expenseViewModel = ExpenseViewModel.sharedInstance
-    @State var expenseName: String = ""
-    @State var inputExpenseAmount: String = ""
-    @State var selectedCurrency: Int = 0
-    @State var isOptional: Bool = false
-    @State var selectedDate: Date = Date.now
+    @EnvironmentObject var expenseViewModel: ExpenseViewModel
     @State var isDateChosen: Bool = true
-    @State var chosenCategory: ExpenseCategory? = nil
+    var chosenCategoryId: Int
     
     var body: some View {
         Form {
             Section(header: Text("General")) {
-                TextField("Enter expense name...", text: $expenseName)
-                NavigationLink(destination: CategoryListView(chosenCategory: $chosenCategory)) {
-                    HStack {
-                        Text("Category")
-                        Spacer()
-                        Text(chosenCategory?.name ?? "")
-                    }
-                }
+                TextField("Enter expense name...", text: $expenseViewModel.expenseName)
             }
             Section(header: Text("Amount")) {
-                Picker("", selection: $selectedCurrency) {
+                Picker("", selection: $expenseViewModel.selectedCurrency) {
                     ForEach(0..<expenseViewModel.currencies.count, id: \.self) {
                         Text(expenseViewModel.currencies[$0])
                     }
                 }
                 .pickerStyle(SegmentedPickerStyle())
-                TextField("Enter expense amount...", text: $inputExpenseAmount)
+                TextField("Enter expense amount...", text: $expenseViewModel.expenseAmount)
                     .keyboardType(.decimalPad)
-                    .onChange(of: inputExpenseAmount) { newValue in
+                    .onChange(of: expenseViewModel.expenseAmount) { newValue in
                         expenseViewModel.validAmountInput(for: newValue)
-                        inputExpenseAmount = expenseViewModel.inputExpenseAmount
                     }
                 
             }
             Section(header: Text("Importance")) {
-                Toggle(isOn: $isOptional) {
+                Toggle(isOn: $expenseViewModel.isOptional) {
                     Text("Optional expense")
                 }
             }
@@ -64,9 +51,9 @@ struct ExpenseFormView: View {
                         }
                     }
                 } else {
-                    DatePicker("Pick a date", selection: $selectedDate, displayedComponents: .date)
+                    DatePicker("Pick a date", selection: $expenseViewModel.selectedDate, displayedComponents: .date)
                         .datePickerStyle(GraphicalDatePickerStyle())
-                        .onChange(of: selectedDate) { newValue in
+                        .onChange(of: expenseViewModel.selectedDate) { newValue in
                             expenseViewModel.updateDate(for: newValue)
                             withAnimation {
                                 isDateChosen.toggle()
@@ -75,21 +62,27 @@ struct ExpenseFormView: View {
                 }
             }
         }
+        .alert(isPresented: $expenseViewModel.isErrorAppeared) {
+            Alert(title: Text(expenseViewModel.errorAlertTitle),
+                  message: Text(expenseViewModel.errorMessage), dismissButton: .cancel(Text("OK")))
+        }
         .navigationBarTitle("New expense")
         .navigationBarItems(trailing:
                                 Button {
-            //            expenseViewModel.addExpense(name: expenseName, category: chosenCategory!, currency: expenseViewModel.currencies[selectedCurrency], unnecessary: isOptional)
-            presentationMode.wrappedValue.dismiss()
+            expenseViewModel.addExpense(for: chosenCategoryId)
+            if !expenseViewModel.isErrorAppeared {
+                presentationMode.wrappedValue.dismiss()
+            }
         } label: {
             Text("Save")
         }
-                                .disabled(expenseName.isEmpty || chosenCategory == nil || inputExpenseAmount.isEmpty)
+                                .disabled(expenseViewModel.expenseName.isEmpty || expenseViewModel.expenseAmount.isEmpty)
         )
     }
 }
 
 struct ExpenseFormView_Previews: PreviewProvider {
     static var previews: some View {
-        ExpenseFormView()
+        ExpenseFormView(chosenCategoryId: 1)
     }
 }

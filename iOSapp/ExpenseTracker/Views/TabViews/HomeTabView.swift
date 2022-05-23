@@ -10,8 +10,7 @@ import SwiftUI
 struct HomeTabView: View {
     var body: some View {
         NavigationView {
-            ExpensesListView(expenses: [])
-                .navigationBarTitle(Text("Expenses"))
+            EmptyView()
         }
     }
 }

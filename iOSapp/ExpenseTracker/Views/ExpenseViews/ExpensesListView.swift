@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ExpensesListView: View {
     
+    var categoryId: Int
     var expenses: [Expense]
     
     var body: some View {
@@ -30,7 +31,7 @@ struct ExpensesListView: View {
         }
         .navigationBarItems(trailing:
                                 NavigationLink {
-            ExpenseFormView()
+            ExpenseFormView(chosenCategoryId: categoryId)
         } label: {
             Label("Add Item", systemImage: "plus")
         }
@@ -42,6 +43,6 @@ struct ExpensesListView: View {
 
 struct ExpensesListView_Previews: PreviewProvider {
     static var previews: some View {
-        ExpensesListView(expenses: [])
+        ExpensesListView(categoryId: 1, expenses: [])
     }
 }

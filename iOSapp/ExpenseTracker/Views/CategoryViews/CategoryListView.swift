@@ -10,7 +10,7 @@ import SwiftUI
 struct CategoryListView: View {
     
     @Environment(\.presentationMode) var presenationMode
-    @StateObject var categoryViewModel = CategoryViewModel(categoryFetcher: CategoryFetcher(), emojiFetcher: EmojiFetcher())
+    @EnvironmentObject var categoryViewModel: CategoryViewModel
     @Binding var chosenCategory: ExpenseCategory?
     
     var body: some View {

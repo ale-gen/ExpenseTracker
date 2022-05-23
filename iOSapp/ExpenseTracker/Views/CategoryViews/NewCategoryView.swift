@@ -24,8 +24,8 @@ struct NewCategoryView: View {
                 Picker("Icon category", selection: $categoryViewModel.chosenCategory) {
                     ForEach(K.iconCategories, id: \.self) { iconCategory in
                         Text(iconCategory.capitalized)
-                        .navigationTitle("Icon categories")
                     }
+                    .navigationTitle("Icon categories")
                 }
                 if !isEmojiPicked {
                     VStack(alignment: .leading) {

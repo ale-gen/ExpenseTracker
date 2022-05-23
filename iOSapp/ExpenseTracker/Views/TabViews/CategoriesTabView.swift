@@ -6,11 +6,11 @@
 //
 
 import SwiftUI
-import CoreData
 
 struct CategoriesTabView: View {
     
     @EnvironmentObject var categoryViewModel: CategoryViewModel
+    @StateObject var expenseViewModel = ExpenseViewModel(expenseModel: ExpenseModel(), expenseFetcher: ExpenseFetcher())
     @State var searchText: String = ""
     
     var body: some View {
@@ -25,7 +25,8 @@ struct CategoriesTabView: View {
                                 searchText.isEmpty || category.name.contains(searchText)
                             }), id: \.self) { category in
                                 NavigationLink {
-                                    ExpensesListView(expenses: category.expenses)
+                                    ExpensesListView(categoryId: category.id, expenses: category.expenses)
+                                        .navigationTitle(category.name)
                                 } label: {
                                     HStack {
                                         Text(category.icon ?? K.noCategoryIcon)
@@ -56,6 +57,10 @@ struct CategoriesTabView: View {
                     categoryViewModel.getAllEmojis()
                 }))            )}
         }
+        .onAppear {
+            categoryViewModel.getCategories()
+        }
+        .environmentObject(expenseViewModel)
     }
     
     func delete(at offsets: IndexSet) {
