@@ -46,6 +46,17 @@ public class ExpenseController {
         }
     }
 
+    @GetMapping("/categoryId={categoryId}")
+    public ResponseEntity<Object> findExpensesForCategory(@PathVariable long categoryId) {
+        Optional<ExpenseCategory> category = categoriesRepository.findById(categoryId);
+        if (category != null) {
+            List<Expense> expenses = category.get().getExpenses();
+            return ResponseEntity.ok(expenses);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
+    }
+
     @RequestMapping("/{id}")
     public ResponseEntity<Object> findExpenseById(@PathVariable long id) {
         Optional<Expense> expense = expensesRepository.findById(id);
