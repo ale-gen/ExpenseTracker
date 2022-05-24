@@ -54,4 +54,21 @@ class ExpenseFetcher: ExpenseFetcherProtocol, RequestProtocol {
         }
         return false
     }
+    
+    func deleteExpense(categoryId: Int, expenseId: Int) async throws -> Bool {
+        let deletingUrl = "\(urlString)/categoryId=\(categoryId)/expenseId=\(expenseId)"
+        guard let url = URL(string: deletingUrl) else { throw NetworkError.invalidURL }
+        let request = createRequest(url: url, method: "DELETE")
+        let (_, response) = try await session.data(for: request)
+        
+        if let httpResponse = response as? HTTPURLResponse {
+            switch httpResponse.statusCode {
+            case 200:
+                return true
+            default:
+                throw NetworkError.unknown
+            }
+        }
+        return false
+    }
 }

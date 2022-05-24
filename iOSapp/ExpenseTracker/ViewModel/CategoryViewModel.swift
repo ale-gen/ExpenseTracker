@@ -75,6 +75,9 @@ class CategoryViewModel: ObservableObject {
         
         task = Task {
             do {
+                for index in indexSet {
+                    categories.remove(at: index)
+                }
                 let isDeleted = try await categoryFetcher.deleteCategory(id: idToDelete[0])
                 self.getCategories()
                 isErrorAppeared = !isDeleted

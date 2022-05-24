@@ -35,4 +35,25 @@ struct DateConverter {
         
         return "\(day), \(month)"
     }
+    
+    static func formatDate(for date: Date) -> String {
+        let day = DateConverter.getDay(for: date)
+        let monthName = DateConverter.getMonthName(for: date)
+        let expenseYear = DateConverter.getYear(for: date)
+        let currentYear = DateConverter.getYear(for: Date.now)
+        var convertedDate: String
+        
+        if expenseYear == currentYear {
+            convertedDate = "\(day), \(monthName)"
+        } else {
+            convertedDate = "\(day), \(monthName) \(expenseYear)"
+        }
+        return convertedDate
+    }
+    
+    static func formatDateFromString(for stringDate: String) -> String {
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+        let date = dateFormatter.date(from: stringDate) ?? Date.now
+        return formatDate(for: date)
+    }
 }

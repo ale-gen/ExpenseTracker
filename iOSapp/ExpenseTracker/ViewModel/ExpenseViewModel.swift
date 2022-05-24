@@ -36,6 +36,11 @@ class ExpenseViewModel: ObservableObject {
         return currencies[selectedCurrency]
     }
     
+    var expensesByDate: [String: [Expense]] {
+        guard !expenses.isEmpty else { return [:] }
+        return .init(grouping: expenses, by: { $0.expenseDate })
+    }
+    
     init(expenseModel: ExpenseModel, expenseFetcher: ExpenseFetcher) {
         self.expenseModel = expenseModel
         self.expenseFetcher = expenseFetcher
@@ -77,6 +82,20 @@ class ExpenseViewModel: ObservableObject {
         }
     }
     
+    func deleteExpense(for chosenCategory: Int, expenseId: Int) {task = Task {
+            do {
+                expenses = expenses.filter { $0.id != expenseId }
+                let isDeleted = try await expenseFetcher.deleteExpense(categoryId: chosenCategory, expenseId: expenseId)
+                isErrorAppeared = !isDeleted
+                getExpenses(for: chosenCategory)
+            } catch let error {
+                isErrorAppeared = true
+                errorMessage = "There occurs a problem during deleting chosen expense. Please try again."
+                print("Error during deleting expense: \(error.localizedDescription)")
+            }
+        }
+    }
+    
     func validAmountInput(for input: String) {
         expenseAmount = NumbersOnly.filterNumbers(for: input)
     }
@@ -86,17 +105,6 @@ class ExpenseViewModel: ObservableObject {
     }
     
     func updateDate(for date: Date) {
-        let day = DateConverter.getDay(for: date)
-        let monthName = DateConverter.getMonthName(for: date)
-        let expenseYear = DateConverter.getYear(for: date)
-        let currentYear = DateConverter.getYear(for: Date.now)
-        var convertedDate: String
-        
-        if expenseYear == currentYear {
-            convertedDate = "\(day), \(monthName)"
-        } else {
-            convertedDate = "\(day), \(monthName) \(expenseYear)"
-        }
-        stringExpenseDate = convertedDate
+        stringExpenseDate = DateConverter.formatDate(for: date)
     }
 }

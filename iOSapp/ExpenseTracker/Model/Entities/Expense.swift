@@ -8,6 +8,7 @@
 import Foundation
 
 struct Expense: Decodable {
+    let id: Int
     let name: String
     let amount: Double
     let currency: String

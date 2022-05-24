@@ -18,12 +18,19 @@ struct ExpensesListView: View {
                 NoResultsView(forExpenses: true)
             } else {
                 List {
-                    ForEach(0..<expenseViewModel.expenses.count, id: \.self) { expenseIndex in
-                        let expense = expenseViewModel.expenses[expenseIndex]
-                        Button {
-                            //TODO: - go to expense's details
-                        } label: {
-                            ExpenseCell(expense: expense)
+                    ForEach(Array(expenseViewModel.expensesByDate.keys.sorted()), id: \.self) { expenseDate in
+                        if let expenses = expenseViewModel.expensesByDate[expenseDate] {
+                            Section(header: Text(DateConverter.formatDateFromString(for: expenseDate))) {
+                                ForEach(0..<expenses.count, id: \.self) { expenseIndex in
+                                    let expense = expenses[expenseIndex]
+                                    ExpenseCell(expense: expense)
+                                }
+                                .onDelete { indexSet in
+                                    for index in indexSet {
+                                        expenseViewModel.deleteExpense(for: categoryId, expenseId: expenses[index].id)
+                                    }
+                                }
+                            }
                         }
                     }
                 }
