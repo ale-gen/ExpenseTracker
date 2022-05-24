@@ -1,5 +1,6 @@
 package com.example.expenseTrackerService.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import com.example.expenseTrackerService.entity.Expense;
@@ -79,8 +80,22 @@ public class ExpenseController {
         return ResponseEntity.ok(updatedExpense);
     }
 
-    @DeleteMapping("/{id}")
-    public void delete(@PathVariable Long id) {
-        expensesRepository.deleteById(id);
+    @DeleteMapping("/categoryId={categoryId}/expenseId={expenseId}")
+    public ResponseEntity<Object> delete(@PathVariable("categoryId") Long categoryId, @PathVariable("expenseId") Long expenseId) {
+        Optional<ExpenseCategory> category = categoriesRepository.findById(categoryId);
+        if (category != null) {
+            List<Expense> expenses = category.get().getExpenses();
+            List<Expense> newExpenses = new ArrayList<Expense>();
+            for (Expense expense : expenses) {
+                if (expense.getId() != expenseId) {
+                    newExpenses.add(expense);
+                }
+            }
+            category.get().setExpenses(newExpenses);
+            expensesRepository.deleteById(expenseId);
+            return ResponseEntity.ok(categoriesRepository.save(category.get()));
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
     }
 }
