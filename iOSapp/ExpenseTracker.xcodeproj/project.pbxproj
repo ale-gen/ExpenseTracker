@@ -16,12 +16,14 @@
 		7A26469127C3E8DD0059EA2F /* EmojiFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A26469027C3E8DD0059EA2F /* EmojiFetcher.swift */; };
 		7A26469327C3EF150059EA2F /* Emoji.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A26469227C3EF150059EA2F /* Emoji.swift */; };
 		7A26469627C3F8480059EA2F /* EmojiFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A26469527C3F8480059EA2F /* EmojiFormatter.swift */; };
+		7A2B9597283FC81B00C285E2 /* Int+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A2B9596283FC81B00C285E2 /* Int+Extension.swift */; };
 		7A2CEBA127C5486300D30EF9 /* EmojiCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A2CEBA027C5486300D30EF9 /* EmojiCell.swift */; };
 		7A2CEBA327C54B4D00D30EF9 /* EmojiCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A2CEBA227C54B4D00D30EF9 /* EmojiCollection.swift */; };
 		7A3E30B127DF3B7F007A07F3 /* ExpenseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A3E30B027DF3B7F007A07F3 /* ExpenseCell.swift */; };
 		7A4702FB27CEA6C90026DC18 /* CategoryListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A4702FA27CEA6C90026DC18 /* CategoryListView.swift */; };
 		7A4DC99F283669B0004C68D3 /* NoResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A4DC99E283669B0004C68D3 /* NoResultsView.swift */; };
 		7A58B783283E60CB0032CB77 /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A58B782283E60CB0032CB77 /* ChartView.swift */; };
+		7A58B785283E7F870032CB77 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A58B784283E7F870032CB77 /* HomeViewModel.swift */; };
 		7A63CB3A27C8DFF700CA39AB /* Expense.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A63CB3927C8DFF700CA39AB /* Expense.swift */; };
 		7A65EE2127C011560010E174 /* HomeTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A65EE2027C011560010E174 /* HomeTabView.swift */; };
 		7A65EE2327C015B80010E174 /* SettingsTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A65EE2227C015B80010E174 /* SettingsTabView.swift */; };
@@ -70,12 +72,14 @@
 		7A26469027C3E8DD0059EA2F /* EmojiFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiFetcher.swift; sourceTree = "<group>"; };
 		7A26469227C3EF150059EA2F /* Emoji.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Emoji.swift; sourceTree = "<group>"; };
 		7A26469527C3F8480059EA2F /* EmojiFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiFormatter.swift; sourceTree = "<group>"; };
+		7A2B9596283FC81B00C285E2 /* Int+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Extension.swift"; sourceTree = "<group>"; };
 		7A2CEBA027C5486300D30EF9 /* EmojiCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiCell.swift; sourceTree = "<group>"; };
 		7A2CEBA227C54B4D00D30EF9 /* EmojiCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiCollection.swift; sourceTree = "<group>"; };
 		7A3E30B027DF3B7F007A07F3 /* ExpenseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseCell.swift; sourceTree = "<group>"; };
 		7A4702FA27CEA6C90026DC18 /* CategoryListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryListView.swift; sourceTree = "<group>"; };
 		7A4DC99E283669B0004C68D3 /* NoResultsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoResultsView.swift; sourceTree = "<group>"; };
 		7A58B782283E60CB0032CB77 /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
+		7A58B784283E7F870032CB77 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		7A63CB3927C8DFF700CA39AB /* Expense.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Expense.swift; sourceTree = "<group>"; };
 		7A65EE2027C011560010E174 /* HomeTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabView.swift; sourceTree = "<group>"; };
 		7A65EE2227C015B80010E174 /* SettingsTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTabView.swift; sourceTree = "<group>"; };
@@ -154,6 +158,14 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
+		7A2B9595283FBDE800C285E2 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				7A2B9596283FC81B00C285E2 /* Int+Extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		7A4DC9A028366E4B004C68D3 /* UtilsViews */ = {
 			isa = PBXGroup;
 			children = (
@@ -209,6 +221,7 @@
 				7AD32C882836BA8B009BE7DF /* Entities */,
 				7A63CB3727C8DF6F00CA39AB /* Network */,
 				7AB482A827CBCDEC00003A47 /* ExpenseModel.swift */,
+				7A2B9595283FBDE800C285E2 /* Extensions */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -228,6 +241,7 @@
 			children = (
 				7ADDB21427C2E54B00443E25 /* CategoryViewModel.swift */,
 				7AB0EA2327CACD5E00EDC5DA /* ExpenseViewModel.swift */,
+				7A58B784283E7F870032CB77 /* HomeViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -435,6 +449,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7A2CEBA327C54B4D00D30EF9 /* EmojiCollection.swift in Sources */,
+				7A2B9597283FC81B00C285E2 /* Int+Extension.swift in Sources */,
 				7A4DC99F283669B0004C68D3 /* NoResultsView.swift in Sources */,
 				7A20743F27CA94DC0078180C /* NumbersOnly.swift in Sources */,
 				7A65EE2527C015E00010E174 /* CategoriesTabView.swift in Sources */,
@@ -447,6 +462,7 @@
 				7ADDB21527C2E54B00443E25 /* CategoryViewModel.swift in Sources */,
 				7AF1CCD327CD99340067F451 /* DateConverter.swift in Sources */,
 				7A65EE2327C015B80010E174 /* SettingsTabView.swift in Sources */,
+				7A58B785283E7F870032CB77 /* HomeViewModel.swift in Sources */,
 				7A65EE2127C011560010E174 /* HomeTabView.swift in Sources */,
 				7A26469127C3E8DD0059EA2F /* EmojiFetcher.swift in Sources */,
 				7A3E30B127DF3B7F007A07F3 /* ExpenseCell.swift in Sources */,

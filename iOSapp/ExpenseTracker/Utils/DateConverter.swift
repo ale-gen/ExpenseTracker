@@ -23,8 +23,20 @@ struct DateConverter {
         return month
     }
     
+    static func getMonth(for date: Date) -> Int {
+        dateFormatter.dateFormat = "MM"
+        let month = dateFormatter.string(from: date)
+        return Int(month) ?? 0
+    }
+    
     static func getYear(for date: Date) -> String {
         dateFormatter.dateFormat = "yy"
+        let year = dateFormatter.string(from: date)
+        return year
+    }
+    
+    static func getLongYear(for date: Date) -> String {
+        dateFormatter.dateFormat = "yyyy"
         let year = dateFormatter.string(from: date)
         return year
     }
@@ -55,5 +67,18 @@ struct DateConverter {
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
         let date = dateFormatter.date(from: stringDate) ?? Date.now
         return formatDate(for: date)
+    }
+    
+    static func extractDate(stringDate: String) -> (Int, Int, Int)? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+        let date = dateFormatter.date(from: stringDate)
+        if let safeDate = date {
+            let day = Calendar.current.component(.day, from: safeDate)
+            let month = Calendar.current.component(.month, from: safeDate)
+            let year = Calendar.current.component(.year, from: safeDate)
+            return (day, month, year)
+        }
+        return nil
     }
 }
