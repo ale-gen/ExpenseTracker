@@ -27,31 +27,33 @@ struct HomeTabView: View {
                                 Text(choice)
                                     .fontWeight(.light)
                                     .font(.subheadline)
-                                    .foregroundColor(Color("CustomFontColor"))
+                                    .foregroundColor(Color.primary)
                                     .frame(minWidth: 40)
                                     .padding(10)
                                     .overlay(
                                         RoundedRectangle(cornerRadius: 10)
                                             .stroke(Color("CustomFontColor"), lineWidth: 0.5)
                                     )
-                                
+                                    .background(
+                                        RoundedRectangle(cornerRadius: 10)
+                                            .fill(choice == chosenMonthSummary ? Color.accentColor : Color(UIColor.systemBackground))
+                                    )
                             }
                         }
                     }
                 }
                 .padding([.top, .bottom], 10)
                 
-                if homeViewModel.availableChoices.count > 0 {
-                    ChartView(data: homeViewModel.dailyExpenses[chosenMonthSummary] ?? [])
-                } else {
-                    NoResultsView(forExpenses: true)
+                let data = homeViewModel.dailyExpenses[chosenMonthSummary]
+                if data?.count ?? 0 > 0 {
+                    ChartView(data: data ?? [])
                 }
                 Spacer()
             }
             .onAppear {
                 homeViewModel.fetchCategories()
             }
-            .navigationBarTitle(Text("Home"))
+            .navigationBarTitle(Text("Monthly summary"))
         }
     }
 }

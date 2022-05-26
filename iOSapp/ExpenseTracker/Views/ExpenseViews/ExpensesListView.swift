@@ -18,7 +18,7 @@ struct ExpensesListView: View {
                 NoResultsView(forExpenses: true)
             } else {
                 List {
-                    ForEach(Array(expenseViewModel.expensesByDate.keys.sorted()), id: \.self) { expenseDate in
+                    ForEach(Array(expenseViewModel.expensesByDate.keys.sorted().reversed()), id: \.self) { expenseDate in
                         if let expenses = expenseViewModel.expensesByDate[expenseDate] {
                             Section(header: Text(DateConverter.formatDateFromString(for: expenseDate))) {
                                 ForEach(0..<expenses.count, id: \.self) { expenseIndex in
