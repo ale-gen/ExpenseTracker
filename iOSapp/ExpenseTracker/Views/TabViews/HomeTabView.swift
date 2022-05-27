@@ -9,7 +9,7 @@ import SwiftUI
 
 struct HomeTabView: View {
     
-    @StateObject var homeViewModel: HomeViewModel = HomeViewModel(categoryFetcher: CategoryFetcher())
+    @StateObject var homeViewModel: HomeViewModel = HomeViewModel(categoryFetcher: CategoryFetcher(), exchangeRatesFetcher: ExchangeRatesFetcher())
     @State var chosenMonthSummary: String = "May"
     
     var body: some View {

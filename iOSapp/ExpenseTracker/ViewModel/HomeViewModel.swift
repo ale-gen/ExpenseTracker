@@ -6,21 +6,38 @@
 //
 
 import Foundation
+import SwiftUI
 
 @MainActor
 class HomeViewModel: ObservableObject {
     
+    var preferredCurrency: String = "PLN"
+    
     private var categoryFetcher: CategoryFetcher
+    private var exchangeRatesFetcher: ExchangeRatesFetcher
     private var task: Task<(), Never>?
     private var categories: [ExpenseCategory] = []
     private var expenses: [Expense] = []
+    private var exchangeRates: ExchangeRates?
     
     @Published var dailyExpenses: [String: [Double]] = [:]
     @Published var availableChoices: [String] = []
     
-    init(categoryFetcher: CategoryFetcher) {
+    init(categoryFetcher: CategoryFetcher, exchangeRatesFetcher: ExchangeRatesFetcher) {
         self.categoryFetcher = categoryFetcher
-        fetchCategories()
+        self.exchangeRatesFetcher = exchangeRatesFetcher
+        fetchExchangeRates()
+    }
+    
+    func fetchExchangeRates() {
+        task = Task {
+            do {
+                exchangeRates =  try await exchangeRatesFetcher.getConverters(for: preferredCurrency)
+                fetchCategories()
+            } catch {
+                print("Cannot fetch exchange rates.")
+            }
+        }
     }
     
     func fetchCategories() {
@@ -29,7 +46,7 @@ class HomeViewModel: ObservableObject {
                 categories = try await categoryFetcher.getAll()
                 extractExpenses()
             } catch {
-                print("Cannot fetch categories")
+                print("Cannot fetch categories.")
             }
         }
     }
@@ -59,7 +76,12 @@ class HomeViewModel: ObservableObject {
                 }
                 var dailySum = 0.0
                 for expense in expenses {
-                    dailySum += expense.amount
+                    if let definedRate = exchangeRates {
+                        let convertedExpenseAmount = CurrencyConverter.convert(amount: expense.amount, fromCurrency: expense.currency, with: definedRate) ?? 0.0
+                        dailySum += convertedExpenseAmount
+                    } else {
+                        dailySum += 1.0
+                    }
                 }
                 self.dailyExpenses[key]?.remove(at: expenseDay - 1)
                 self.dailyExpenses[key]?.insert(dailySum, at: expenseDay - 1)
@@ -74,5 +96,4 @@ class HomeViewModel: ObservableObject {
             availableChoices.append(key)
         }
     }
-    
 }
