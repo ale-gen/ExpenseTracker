@@ -51,7 +51,7 @@ struct HomeTabView: View {
                 Spacer()
             }
             .onAppear {
-                homeViewModel.fetchCategories()
+                homeViewModel.fetchExchangeRates()
             }
             .navigationBarTitle(Text("Monthly summary"))
         }

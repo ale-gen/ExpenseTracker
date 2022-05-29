@@ -8,8 +8,23 @@
 import SwiftUI
 
 struct SettingsTabView: View {
+    
+    var expenseModel: ExpenseModel = .init()
+    @AppStorage("PreferredCurrency") var currencyPreferenceSelection = ""
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationView {
+            Form {
+                Section(header: Text("Preferences")) {
+                    Picker("Currency", selection: $currencyPreferenceSelection) {
+                        ForEach(expenseModel.currencies, id: \.self) { currency in
+                            Text(currency)
+                        }
+                    }
+                }
+            }
+            .navigationBarTitle(Text("Settings"))
+        }
     }
 }
 

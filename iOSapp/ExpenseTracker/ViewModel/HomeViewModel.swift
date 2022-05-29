@@ -11,7 +11,7 @@ import SwiftUI
 @MainActor
 class HomeViewModel: ObservableObject {
     
-    var preferredCurrency: String = "PLN"
+    @AppStorage("PreferredCurrency") var preferredCurrency: String = ""
     
     private var categoryFetcher: CategoryFetcher
     private var exchangeRatesFetcher: ExchangeRatesFetcher
