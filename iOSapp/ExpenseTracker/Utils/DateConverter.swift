@@ -81,4 +81,14 @@ struct DateConverter {
         }
         return nil
     }
+    
+    static func formatDateForComparison(for stringDate: String) -> Date? {
+        dateFormatter.dateFormat = "yy, LLLL"
+        let dateWithYear = dateFormatter.date(from: stringDate)
+        if let correctDate = dateWithYear {
+            return correctDate
+        }
+        let correctDateString = "\(getYear(for: Date.now)), \(stringDate)"
+        return formatDateForComparison(for: correctDateString)
+    }
 }

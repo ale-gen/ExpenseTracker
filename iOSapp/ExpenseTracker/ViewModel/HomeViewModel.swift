@@ -95,5 +95,6 @@ class HomeViewModel: ObservableObject {
         for key in dailyExpenses.keys {
             availableChoices.append(key)
         }
+        availableChoices.sort(by: { DateConverter.formatDateForComparison(for: $0)! > DateConverter.formatDateForComparison(for: $1)! })
     }
 }
