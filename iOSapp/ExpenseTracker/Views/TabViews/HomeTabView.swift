@@ -32,7 +32,7 @@ struct HomeTabView: View {
                                     .padding(10)
                                     .overlay(
                                         RoundedRectangle(cornerRadius: 10)
-                                            .stroke(choice == chosenMonthSummary ? Color("CustomColor") : Color("CustomFontColor"), lineWidth: 0.5)
+                                            .stroke(choice == chosenMonthSummary ? Color("GraphColor") : Color("CustomFontColor"), lineWidth: 0.5)
                                     )
                                     .background(
                                         RoundedRectangle(cornerRadius: 10)
