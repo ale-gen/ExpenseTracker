@@ -73,6 +73,7 @@ class ExpenseViewModel: ObservableObject {
                 let isAdded = try await expenseFetcher.addExpenseToCategory(for: categoryId, name: expenseName, amount: convertedAmount, currency: currency, expenseDate: date, unnecessary: isOptional)
                 isErrorAppeared = !isAdded
                 getExpenses(for: categoryId)
+                cleanTextFields()
             } catch let error {
                 isErrorAppeared = true
                 errorAlertTitle = "Cannot add expense"
@@ -106,5 +107,12 @@ class ExpenseViewModel: ObservableObject {
     
     func updateDate(for date: Date) {
         stringExpenseDate = DateConverter.formatDate(for: date)
+    }
+    
+    func cleanTextFields() {
+        expenseName = ""
+        expenseAmount = ""
+        isOptional = false
+        selectedDate = Date.now
     }
 }

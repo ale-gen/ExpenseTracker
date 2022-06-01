@@ -22,7 +22,7 @@ struct CategoriesTabView: View {
                     } else {
                         List {
                             ForEach(categoryViewModel.categories.filter({ category in
-                                searchText.isEmpty || category.name.contains(searchText)
+                                searchText.isEmpty || category.name.lowercased().contains(searchText.lowercased())
                             }), id: \.self) { category in
                                 NavigationLink {
                                     ExpensesListView(categoryId: category.id)
