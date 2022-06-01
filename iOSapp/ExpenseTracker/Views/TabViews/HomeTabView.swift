@@ -27,22 +27,22 @@ struct HomeTabView: View {
                                 Text(choice)
                                     .fontWeight(.light)
                                     .font(.subheadline)
-                                    .foregroundColor(Color.primary)
+                                    .foregroundColor(choice == chosenMonthSummary ? Color.white : Color.primary)
                                     .frame(minWidth: 40)
                                     .padding(10)
                                     .overlay(
                                         RoundedRectangle(cornerRadius: 10)
-                                            .stroke(Color("CustomFontColor"), lineWidth: 0.5)
+                                            .stroke(choice == chosenMonthSummary ? Color("CustomColor") : Color("CustomFontColor"), lineWidth: 0.5)
                                     )
                                     .background(
                                         RoundedRectangle(cornerRadius: 10)
-                                            .fill(choice == chosenMonthSummary ? Color.accentColor : Color(UIColor.systemBackground))
+                                            .fill(choice == chosenMonthSummary ? Color("GraphColor") : Color(UIColor.systemBackground))
                                     )
                             }
                         }
                     }
                 }
-                .padding([.top, .bottom], 10)
+                .padding(10)
                 
                 let data = homeViewModel.dailyExpenses[chosenMonthSummary]
                 if data?.count ?? 0 > 0 {

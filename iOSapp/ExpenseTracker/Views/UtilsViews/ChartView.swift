@@ -19,7 +19,7 @@ struct ChartView: View {
         self.data = data
         self.minY = 0.0
         self.maxY = data.max() ?? 0.0
-        self.lineColor = Color("CustomFontColor")
+        self.lineColor = Color("GraphLineColor")
     }
     
     var body: some View {
