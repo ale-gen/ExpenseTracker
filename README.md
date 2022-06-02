@@ -7,3 +7,33 @@ The purpose of this project is creating a full application to track expenses. Us
 2. Mobile application is written in Swift, in details using SwiftUI, which means is only available for iOS platform.
 3. Used database is PostgreSQL Database, which run in docker container.
 
+
+## Run Locally
+
+Clone the project
+
+```bash
+  git clone https://github.com/ale-gen/ExpenseTracker.git
+```
+
+Go to the project directory
+
+```bash
+  cd ExpenseTracker
+```
+
+Build and run docker containers for backend and database
+
+```bash
+  docker-compose up --build
+```
+
+Open XCode
+
+```bash
+  open -a Xcode
+```
+
+Run app on iOS simulator with shortcut <kbd>COMMAND+R</kbd>
+
+
